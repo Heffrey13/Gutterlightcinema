@@ -1,76 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Item #001</title>
+<title>Recovered Artifact #001</title>
 
-<style>
-
-body{
-    margin:0;
-    background:#050505;
-    color:#d8d8d8;
-    font-family:Courier New, monospace;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    height:100vh;
-}
-
-.box{
-    width:600px;
-    max-width:90%;
-    border:1px solid #333;
-    padding:40px;
-    text-align:center;
-    box-shadow:0 0 30px #111;
-}
-
-input{
-    background:#111;
-    color:white;
-    border:1px solid #555;
-    padding:12px;
-    width:260px;
-    font-size:16px;
-}
-
-button{
-    margin-top:20px;
-    padding:12px 30px;
-    background:#111;
-    color:white;
-    border:1px solid #555;
-    cursor:pointer;
-}
-
-button:hover{
-    background:white;
-    color:black;
-}
-
-#error{
-    color:#888;
-    margin-top:20px;
-}
-
-</style>
+<link rel="stylesheet" href="/assets/css/style.css">
 
 </head>
 
 <body>
 
-<div class="box">
+<div class="container">
 
 <h1>ITEM #001</h1>
 
-<p>Recovered Artifact</p>
-
-<p><strong>Gutterlight Cinema</strong></p>
+<p><strong>Recovered Artifact</strong></p>
 
 <hr>
+
+<p><strong>Gutterlight Cinema</strong></p>
 
 <p>
 The required recovery phrase should be
@@ -82,9 +34,9 @@ id="pw"
 type="password"
 placeholder="Recovery Phrase">
 
-<br>
+<br><br>
 
-<button onclick="recover()">
+<button onclick="recoverItem()">
 Recover Item
 </button>
 
@@ -92,22 +44,13 @@ Recover Item
 
 </div>
 
+<script src="/assets/js/recover.js"></script>
+
 <script>
 
-function recover(){
+function recoverItem(){
 
-let pw=document.getElementById("pw").value.toLowerCase();
-
-if(pw==="projectionist"){
-
-window.location.href="recovered.html";
-
-}else{
-
-document.getElementById("error").innerHTML=
-"Recovery failed.<br>Please examine the artifact again.";
-
-}
+recover("projectionist","recovered.html");
 
 }
 
