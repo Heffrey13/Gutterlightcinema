@@ -1,1 +1,51 @@
 
+body{
+  margin:0;
+  background:#050505;
+  color:#eeeeee;
+  font-family:"Courier New", monospace;
+  min-height:100vh;
+}
+
+.container{
+  max-width:700px;
+  padding:40px 24px;
+}
+
+h1{
+  font-size:3rem;
+  margin-bottom:30px;
+}
+
+p{
+  font-size:1.2rem;
+  line-height:1.5;
+}
+
+hr{
+  border:none;
+  border-top:1px solid #444;
+  margin:25px 0;
+}
+
+input{
+  background:#111;
+  color:white;
+  border:1px solid #555;
+  padding:12px;
+  width:260px;
+  font-size:16px;
+}
+
+button{
+  margin-top:12px;
+  background:#222;
+  color:white;
+  border:1px solid #666;
+  padding:12px 18px;
+  font-size:16px;
+}
+
+#error{
+  color:#ff5555;
+}
