@@ -6,17 +6,23 @@ function recover(correctPhrase, destination) {
     document.body.innerHTML = `
       <div class="container">
         <h1>RECOVERING...</h1>
+
         <p>Verifying artifact...</p>
-        <p>████░░░░░░</p>
+        <div class="bar"><div class="fill"></div></div>
+
         <p>Decrypting media...</p>
-        <p>███████░░░</p>
+        <div class="bar"><div class="fill"></div></div>
+
+        <p>Restoring projection...</p>
+        <div class="bar"><div class="fill"></div></div>
+
         <p>Projection ready.</p>
       </div>
     `;
 
     setTimeout(() => {
       window.location.href = destination;
-    }, 2500);
+    }, 2800);
   } else {
     error.innerHTML = "Recovery failed.<br>Please examine the artifact again.";
   }
