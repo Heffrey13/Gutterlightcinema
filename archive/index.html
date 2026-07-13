@@ -37,17 +37,18 @@
       width: 100%;
       border: 1px solid #333;
       padding: clamp(18px, 3vw, 24px);
-      background: rgba(255,255,255,.02);
+      background: rgba(255, 255, 255, 0.02);
       text-align: left;
+
       transition:
-        border-color .2s ease,
-        background .2s ease,
-        transform .2s ease;
+        border-color 0.2s ease,
+        background 0.2s ease,
+        transform 0.2s ease;
     }
 
     .item:hover {
       border-color: #777;
-      background: rgba(255,255,255,.05);
+      background: rgba(255, 255, 255, 0.05);
       transform: translateY(-2px);
     }
 
@@ -85,7 +86,7 @@
     .item-status {
       display: block;
       color: #aaa;
-      font-size: .95rem;
+      font-size: 0.95rem;
     }
 
     .missing {
@@ -95,6 +96,16 @@
 
     .missing .item-status {
       color: #555;
+    }
+
+    .redacted-file {
+      border-color: #5b1f1f;
+      background: rgba(100, 0, 0, 0.08);
+    }
+
+    .redacted-file .item-number,
+    .redacted-file .item-title {
+      color: #d7b0b0;
     }
 
     .return-link {
@@ -128,6 +139,7 @@
       <div class="archive-list">
 
         <div class="item">
+
           <a href="/archive/001/">
 
             <strong class="item-number">
@@ -138,11 +150,15 @@
               Gutterlight Cinema
             </span>
 
-            <span class="item-status">
+            <span
+              id="item001Status"
+              class="item-status"
+            >
               Status: Awaiting Recovery
             </span>
 
           </a>
+
         </div>
 
         <div class="item missing">
@@ -177,6 +193,26 @@
 
         </div>
 
+        <div
+          id="redactedFile"
+          class="item redacted-file"
+          hidden
+        >
+
+          <strong class="item-number">
+            FILE // ███████
+          </strong>
+
+          <span class="item-title">
+            [REDACTED]
+          </span>
+
+          <span class="item-status">
+            Status: Newly Indexed
+          </span>
+
+        </div>
+
       </div>
 
       <a
@@ -191,6 +227,29 @@
   </main>
 
   <script src="../assets/js/atmosphere.js?v=2"></script>
+
+  <script>
+    const item001Status =
+      document.getElementById("item001Status");
+
+    const redactedFile =
+      document.getElementById("redactedFile");
+
+    const itemRecovered =
+      localStorage.getItem("item001Recovered");
+
+    const redactedUnlocked =
+      localStorage.getItem("redacted001Unlocked");
+
+    if (itemRecovered === "true") {
+      item001Status.textContent =
+        "Status: Recovered";
+    }
+
+    if (redactedUnlocked === "true") {
+      redactedFile.hidden = false;
+    }
+  </script>
 
 </body>
 
