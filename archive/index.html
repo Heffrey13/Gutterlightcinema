@@ -1,53 +1,116 @@
 <!DOCTYPE html>
 <html>
+
 <head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
   <title>Lost & Found Archive</title>
+
+  <link
+    rel="stylesheet"
+    href="../assets/css/style.css"
+  >
+
   <style>
+
     body {
-      background: #050505;
-      color: #d8d8d8;
-      font-family: Courier New, monospace;
-      padding: 40px;
+
+      display:block;
+
+      padding:40px;
+
     }
-    h1 {
-      letter-spacing: 4px;
-      color: white;
-    }
+
     .item {
-      border: 1px solid #333;
-      padding: 20px;
-      margin: 20px 0;
-      max-width: 500px;
+
+      border:1px solid #333;
+
+      padding:20px;
+
+      margin:20px 0;
+
+      max-width:500px;
+
+      background:
+        rgba(255,255,255,.02);
+
+      transition:.2s;
+
     }
-    a {
-      color: white;
-      text-decoration: none;
+
+    .item:hover {
+
+      border-color:#777;
+
+      background:
+        rgba(255,255,255,.05);
+
     }
+
     .missing {
-      color: #555;
+
+      color:#555;
+
     }
+
+    .item a {
+
+      color:white;
+
+      text-decoration:none;
+
+      display:block;
+
+    }
+
   </style>
+
 </head>
+
 <body>
+
   <h1>LOST & FOUND</h1>
+
   <p>Recovered Items</p>
 
   <div class="item">
+
     <a href="/archive/001/">
+
       <strong>ITEM #001</strong><br>
+
       Gutterlight Cinema<br>
+
       Status: Awaiting Recovery
+
     </a>
+
   </div>
 
   <div class="item missing">
+
     <strong>ITEM #002</strong><br>
+
     Missing
+
   </div>
 
   <div class="item missing">
+
     <strong>ITEM #003</strong><br>
+
     Missing
+
   </div>
+
+  <script src="../assets/js/atmosphere.js?v=1"></script>
+
 </body>
+
 </html>
