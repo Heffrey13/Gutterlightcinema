@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+
   <meta charset="UTF-8">
 
   <meta
@@ -15,6 +16,7 @@
     rel="stylesheet"
     href="../../assets/css/style.css"
   >
+
 </head>
 
 <body>
@@ -57,10 +59,11 @@
 
   </div>
 
-  <script src="../../assets/js/recover.js?v=16"></script>
-  <script src="../../assets/js/atmosphere.js?v=1"></script>
+  <script src="../../assets/js/recover.js?v=17"></script>
+  <script src="../../assets/js/atmosphere.js?v=2"></script>
 
   <script>
+
     const recoveryForm =
       document.getElementById("recoveryForm");
 
@@ -70,21 +73,26 @@
     recoveryForm.addEventListener(
       "submit",
       function (event) {
+
         event.preventDefault();
 
         recover(
           "projectionist",
           "recovered.html"
         );
+
       }
     );
 
     window.addEventListener(
       "load",
       function () {
+
         passwordField.focus();
+
       }
     );
+
   </script>
 
 </body>
