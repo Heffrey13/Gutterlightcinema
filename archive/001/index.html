@@ -4,11 +4,13 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
 <title>Recovered Artifact #001</title>
 
-<link rel="stylesheet" href="../../assets/css/style.css">
+<link rel="stylesheet"
+      href="../../assets/css/style.css">
 
 </head>
 
@@ -16,43 +18,77 @@
 
 <div class="container">
 
-<h1>ITEM #001</h1>
+    <h1>ITEM #001</h1>
 
-<p><strong>Recovered Artifact</strong></p>
+    <p><strong>Recovered Artifact</strong></p>
 
-<hr>
+    <hr>
 
-<p><strong>Gutterlight Cinema</strong></p>
+    <p><strong>Gutterlight Cinema</strong></p>
 
-<p>
-The required recovery phrase should be
-present on the recovered artifact.
-</p>
+    <p>
+        The required recovery phrase should be
+        present on the recovered artifact.
+    </p>
 
-<input
-id="pw"
-type="password"
-placeholder="Recovery Phrase">
+    <input
+        id="pw"
+        type="password"
+        placeholder="Awaiting Input...">
 
-<br><br>
+    <br><br>
 
-<button onclick="recoverItem()">
-Recover Item
-</button>
+    <button onclick="recoverItem()">
+        Recover Item
+    </button>
 
-<p id="error"></p>
+    <p id="error"></p>
 
 </div>
 
-<script src="../../assets/js/recover.js?v=14"></script>
+<script src="../../assets/js/recover.js?v=15"></script>
 
 <script>
 
-function recoverItem(){
+function recoverItem() {
 
-recover("projectionist","recovered.html");
+    recover(
+        "projectionist",
+        "recovered.html"
+    );
 
 }
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        const pw =
+            document.getElementById("pw");
+
+        // Automatically focus box
+        pw.focus();
+
+        // Enter key submits
+        pw.addEventListener(
+            "keydown",
+            function (event) {
+
+                if (
+                    event.key === "Enter"
+                ) {
+
+                    event.preventDefault();
+
+                    recoverItem();
+
+                }
+
+            }
+        );
+
+    }
+);
 
 </script>
 
