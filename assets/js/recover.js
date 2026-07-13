@@ -46,33 +46,27 @@ function recover(correctPhrase, destination) {
   void fill3.offsetWidth;
 
   setTimeout(() => {
-    fill1.style.width = "100%";
-  }, 300);
+  document.getElementById("line2").textContent =
+    "Decrypting media...";
+}, 2200);
 
-  setTimeout(() => {
-    document.getElementById("line2").textContent =
-      "Decrypting media...";
-    fill2.style.width = "100%";
-  }, 1800);
+setTimeout(() => {
+  document.getElementById("line3").textContent =
+    "Restoring projection...";
+}, 4600);
 
-  setTimeout(() => {
-    document.getElementById("line3").textContent =
-      "Restoring projection...";
-    fill3.style.width = "100%";
-  }, 3300);
+setTimeout(() => {
+  document.getElementById("final").textContent =
+    "Projection ready.";
+}, 7400);
 
-  setTimeout(() => {
-    document.getElementById("final").textContent =
-      "Projection ready.";
-  }, 4800);
+setTimeout(() => {
+  document
+    .getElementById("terminal")
+    .classList.add("screen-flicker");
+}, 8000);
 
-  setTimeout(() => {
-    document
-      .getElementById("terminal")
-      .classList.add("screen-flicker");
-  }, 5400);
-
-  setTimeout(() => {
-    window.location.href = destination;
-  }, 6400);
+setTimeout(() => {
+  window.location.href = destination;
+}, 9000);
 }
