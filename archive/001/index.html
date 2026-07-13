@@ -2,21 +2,24 @@
 <html lang="en">
 
 <head>
+  <meta charset="UTF-8">
 
-<meta charset="UTF-8">
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
-<title>Recovered Artifact #001</title>
+  <title>Recovered Artifact #001</title>
 
-<link rel="stylesheet"
-      href="../../assets/css/style.css">
-
+  <link
+    rel="stylesheet"
+    href="../../assets/css/style.css"
+  >
 </head>
 
 <body>
 
-<div class="container">
+  <div class="container">
 
     <h1>ITEM #001</h1>
 
@@ -27,70 +30,61 @@
     <p><strong>Gutterlight Cinema</strong></p>
 
     <p>
-        The required recovery phrase should be
-        present on the recovered artifact.
+      The required recovery phrase should be
+      present on the recovered artifact.
     </p>
 
-    <input
+    <form id="recoveryForm">
+
+      <input
         id="pw"
+        name="recoveryPhrase"
         type="password"
-        placeholder="Awaiting Input...">
+        placeholder="Awaiting Input..."
+        autocomplete="off"
+        enterkeyhint="go"
+      >
 
-    <br><br>
+      <br><br>
 
-    <button onclick="recoverItem()">
+      <button type="submit">
         Recover Item
-    </button>
+      </button>
+
+    </form>
 
     <p id="error"></p>
 
-</div>
+  </div>
 
-<script src="../../assets/js/recover.js?v=15"></script>
+  <script src="../../assets/js/recover.js?v=16"></script>
 
-<script>
+  <script>
+    const recoveryForm =
+      document.getElementById("recoveryForm");
 
-function recoverItem() {
+    const passwordField =
+      document.getElementById("pw");
 
-    recover(
-        "projectionist",
-        "recovered.html"
+    recoveryForm.addEventListener(
+      "submit",
+      function (event) {
+        event.preventDefault();
+
+        recover(
+          "projectionist",
+          "recovered.html"
+        );
+      }
     );
 
-}
-
-document.addEventListener(
-    "DOMContentLoaded",
-    function () {
-
-        const pw =
-            document.getElementById("pw");
-
-        // Automatically focus box
-        pw.focus();
-
-        // Enter key submits
-        pw.addEventListener(
-            "keydown",
-            function (event) {
-
-                if (
-                    event.key === "Enter"
-                ) {
-
-                    event.preventDefault();
-
-                    recoverItem();
-
-                }
-
-            }
-        );
-
-    }
-);
-
-</script>
+    window.addEventListener(
+      "load",
+      function () {
+        passwordField.focus();
+      }
+    );
+  </script>
 
 </body>
 
