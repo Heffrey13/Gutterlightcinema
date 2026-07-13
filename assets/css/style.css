@@ -79,9 +79,25 @@ button:hover {
 
 .fill {
   height: 100%;
-  width: 0%;
+  width: 0;
   background: white;
-  transition: width 1.2s linear;
+}
+
+.fill-one {
+  animation: fill-bar 1.2s linear 0.3s forwards;
+}
+
+.fill-two {
+  animation: fill-bar 1.2s linear 1.8s forwards;
+}
+
+.fill-three {
+  animation: fill-bar 1.2s linear 3.3s forwards;
+}
+
+@keyframes fill-bar {
+  from { width: 0; }
+  to { width: 100%; }
 }
 
 .recovery-terminal {
@@ -92,7 +108,49 @@ button:hover {
 }
 
 .screen-flicker {
-  animation: terminal-flicker 0.8s steps(2, end);
+  animation: terminal-flicker 0.8s steps(2, end) forwards;
+}
+
+@keyframes terminal-flicker {
+  0% {
+    opacity: 1;
+    filter: brightness(1);
+    transform: translateX(0);
+  }
+
+  15% {
+    opacity: 0.2;
+    filter: brightness(2.5);
+    transform: translateX(-2px);
+  }
+
+  30% {
+    opacity: 1;
+    filter: brightness(0.7);
+    transform: translateX(2px);
+  }
+
+  45% {
+    opacity: 0.1;
+    filter: brightness(3);
+  }
+
+  60% {
+    opacity: 1;
+    filter: brightness(1);
+    transform: translateX(-1px);
+  }
+
+  75% {
+    opacity: 0.35;
+  }
+
+  100% {
+    opacity: 0;
+    filter: brightness(3);
+    transform: translateX(0);
+  }
+}
 }
 
 @keyframes terminal-flicker {
