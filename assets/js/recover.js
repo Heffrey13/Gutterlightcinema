@@ -13,51 +13,77 @@ function recover(correctPhrase, destination) {
     return;
   }
 
-  document.body.innerHTML = `
-    <div class="container recovery-terminal" id="terminal">
-      <h1>RECOVERING...</h1>
+  document.body.textContent = "";
 
-      <p>Verifying artifact...</p>
-      <div class="bar">
-        <div class="fill fill-one"></div>
-      </div>
+  const terminal = document.createElement("div");
+  terminal.className = "container recovery-terminal";
+  terminal.id = "terminal";
 
-      <p id="line2">&nbsp;</p>
-      <div class="bar">
-        <div class="fill fill-two"></div>
-      </div>
+  const heading = document.createElement("h1");
+  heading.textContent = "RECOVERING...";
+  terminal.appendChild(heading);
 
-      <p id="line3">&nbsp;</p>
-      <div class="bar">
-        <div class="fill fill-three"></div>
-      </div>
+  createStage(
+    terminal,
+    "Verifying artifact...",
+    "fill-one"
+  );
 
-      <p id="final">&nbsp;</p>
-    </div>
-  `;
+  const line2 = createStage(
+    terminal,
+    "",
+    "fill-two"
+  );
+  line2.id = "line2";
+
+  const line3 = createStage(
+    terminal,
+    "",
+    "fill-three"
+  );
+  line3.id = "line3";
+
+  const finalMessage = document.createElement("p");
+  finalMessage.id = "final";
+  finalMessage.innerHTML = "&nbsp;";
+  terminal.appendChild(finalMessage);
+
+  document.body.appendChild(terminal);
 
   setTimeout(() => {
-    document.getElementById("line2").textContent =
-      "Decrypting media...";
+    line2.textContent = "Decrypting media...";
   }, 2200);
 
   setTimeout(() => {
-    document.getElementById("line3").textContent =
-      "Restoring projection...";
+    line3.textContent = "Restoring projection...";
   }, 4600);
 
   setTimeout(() => {
-    document.getElementById("final").textContent =
-      "Projection ready.";
+    finalMessage.textContent = "Projection ready.";
   }, 7400);
 
   setTimeout(() => {
-    document
-      .getElementById("terminal")
-      .classList.add("screen-flicker");
+    terminal.classList.add("screen-flicker");
   }, 8000);
 
   setTimeout(() => {
     window.location.href = destination;
   }, 9000);
+}
+
+function createStage(parent, label, animationClass) {
+  const text = document.createElement("p");
+  text.textContent = label || "\u00A0";
+  parent.appendChild(text);
+
+  const bar = document.createElement("div");
+  bar.className = "bar";
+
+  const fill = document.createElement("div");
+  fill.className = "fill " + animationClass;
+
+  bar.appendChild(fill);
+  parent.appendChild(bar);
+
+  return text;
 }
