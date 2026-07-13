@@ -1,8 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-
   <meta charset="UTF-8">
 
   <meta
@@ -18,98 +17,180 @@
   >
 
   <style>
-
     body {
+      align-items: flex-start;
+    }
 
-      display:block;
+    .archive-container {
+      width: min(92vw, 900px);
+      margin: 0 auto;
+    }
 
-      padding:40px;
-
+    .archive-list {
+      display: grid;
+      gap: 18px;
+      width: 100%;
+      margin-top: 30px;
     }
 
     .item {
-
-      border:1px solid #333;
-
-      padding:20px;
-
-      margin:20px 0;
-
-      max-width:500px;
-
-      background:
-        rgba(255,255,255,.02);
-
-      transition:.2s;
-
+      width: 100%;
+      border: 1px solid #333;
+      padding: clamp(18px, 3vw, 24px);
+      background: rgba(255,255,255,.02);
+      text-align: left;
+      transition:
+        border-color .2s ease,
+        background .2s ease,
+        transform .2s ease;
     }
 
     .item:hover {
-
-      border-color:#777;
-
-      background:
-        rgba(255,255,255,.05);
-
-    }
-
-    .missing {
-
-      color:#555;
-
+      border-color: #777;
+      background: rgba(255,255,255,.05);
+      transform: translateY(-2px);
     }
 
     .item a {
-
-      color:white;
-
-      text-decoration:none;
-
-      display:block;
-
+      display: block;
+      width: 100%;
+      max-width: none;
+      margin: 0;
+      padding: 0;
+      border: none;
+      background: transparent;
+      color: white;
+      text-decoration: none;
+      text-align: left;
     }
 
-  </style>
+    .item a:hover {
+      background: transparent;
+      color: white;
+      box-shadow: none;
+    }
 
+    .item-number {
+      display: block;
+      margin-bottom: 8px;
+      letter-spacing: 1px;
+    }
+
+    .item-title {
+      display: block;
+      margin-bottom: 8px;
+      font-size: clamp(1.05rem, 2.5vw, 1.25rem);
+    }
+
+    .item-status {
+      display: block;
+      color: #aaa;
+      font-size: .95rem;
+    }
+
+    .missing {
+      color: #555;
+      border-color: #222;
+    }
+
+    .missing .item-status {
+      color: #555;
+    }
+
+    .return-link {
+      margin-top: 30px;
+    }
+
+    @media (min-width: 700px) {
+      .archive-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .item:first-child {
+        grid-column: 1 / -1;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-  <h1>LOST & FOUND</h1>
+  <main class="archive-container">
 
-  <p>Recovered Items</p>
+    <div class="container">
 
-  <div class="item">
+      <h1>LOST & FOUND</h1>
 
-    <a href="/archive/001/">
+      <p>Recovered Items</p>
 
-      <strong>ITEM #001</strong><br>
+      <hr>
 
-      Gutterlight Cinema<br>
+      <div class="archive-list">
 
-      Status: Awaiting Recovery
+        <div class="item">
+          <a href="/archive/001/">
 
-    </a>
+            <strong class="item-number">
+              ITEM #001
+            </strong>
 
-  </div>
+            <span class="item-title">
+              Gutterlight Cinema
+            </span>
 
-  <div class="item missing">
+            <span class="item-status">
+              Status: Awaiting Recovery
+            </span>
 
-    <strong>ITEM #002</strong><br>
+          </a>
+        </div>
 
-    Missing
+        <div class="item missing">
 
-  </div>
+          <strong class="item-number">
+            ITEM #002
+          </strong>
 
-  <div class="item missing">
+          <span class="item-title">
+            Missing
+          </span>
 
-    <strong>ITEM #003</strong><br>
+          <span class="item-status">
+            Status: Unrecovered
+          </span>
 
-    Missing
+        </div>
 
-  </div>
+        <div class="item missing">
 
-  <script src="../assets/js/atmosphere.js?v=1"></script>
+          <strong class="item-number">
+            ITEM #003
+          </strong>
+
+          <span class="item-title">
+            Missing
+          </span>
+
+          <span class="item-status">
+            Status: Unrecovered
+          </span>
+
+        </div>
+
+      </div>
+
+      <a
+        class="return-link"
+        href="/"
+      >
+        Return to Entrance
+      </a>
+
+    </div>
+
+  </main>
+
+  <script src="../assets/js/atmosphere.js?v=2"></script>
 
 </body>
 
