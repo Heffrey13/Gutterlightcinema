@@ -40,37 +40,39 @@ function recover(correctPhrase, destination) {
   const fill2 = document.getElementById("fill2");
   const fill3 = document.getElementById("fill3");
 
-  // Start the first bar after the empty bars appear.
-  requestAnimationFrame(() => {
-    requestAnimationFrame(() => {
-      fill1.style.width = "100%";
-    });
-  });
+  // Force the browser to render all bars at 0% first.
+  fill1.getBoundingClientRect();
+  fill2.getBoundingClientRect();
+  fill3.getBoundingClientRect();
+
+  setTimeout(() => {
+    fill1.style.width = "100%";
+  }, 150);
 
   setTimeout(() => {
     document.getElementById("line2").textContent =
       "Decrypting media...";
     fill2.style.width = "100%";
-  }, 1500);
+  }, 1650);
 
   setTimeout(() => {
     document.getElementById("line3").textContent =
       "Restoring projection...";
     fill3.style.width = "100%";
-  }, 3000);
+  }, 3150);
 
   setTimeout(() => {
     document.getElementById("final").textContent =
       "Projection ready.";
-  }, 4400);
+  }, 4650);
 
   setTimeout(() => {
     document
       .getElementById("terminal")
       .classList.add("screen-flicker");
-  }, 5000);
+  }, 5200);
 
   setTimeout(() => {
     window.location.href = destination;
-  }, 5800);
+  }, 6100);
 }
