@@ -84,20 +84,31 @@ button:hover {
 }
 
 .fill-one {
-  animation: fill-bar 1.2s linear 0.3s forwards;
+  animation: fill-bar 1.8s steps(18, end) 0.3s forwards;
 }
 
 .fill-two {
-  animation: fill-bar 1.2s linear 1.8s forwards;
+  animation: fill-bar 2.1s steps(20, end) 2.4s forwards;
 }
 
 .fill-three {
-  animation: fill-bar 1.2s linear 3.3s forwards;
+  animation: fill-bar 2.4s steps(22, end) 4.8s forwards;
 }
 
 @keyframes fill-bar {
-  from { width: 0; }
-  to { width: 100%; }
+  0%   { width: 0%; }
+  12%  { width: 10%; }
+  18%  { width: 10%; }
+  28%  { width: 27%; }
+  34%  { width: 27%; }
+  49%  { width: 46%; }
+  57%  { width: 46%; }
+  68%  { width: 69%; }
+  74%  { width: 69%; }
+  86%  { width: 88%; }
+  91%  { width: 88%; }
+  100% { width: 100%; }
+}
 }
 
 .recovery-terminal {
