@@ -2,44 +2,241 @@
 <html lang="en">
 
 <head>
+  <meta charset="UTF-8">
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
-<title>Recovered Item</title>
+  <title>Recovered Item #001</title>
 
-<link rel="stylesheet" href="../../assets/css/style.css">
+  <link
+    rel="stylesheet"
+    href="../../assets/css/style.css"
+  >
 
+  <style>
+    body {
+      align-items: flex-start;
+    }
+
+    .recovered-page {
+      width: min(92vw, 900px);
+      margin: 0 auto;
+    }
+
+    .archive-header {
+      text-align: center;
+    }
+
+    .archive-meta {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .meta-card {
+      border: 1px solid #333;
+      background: rgba(255,255,255,.02);
+      padding: 16px;
+      text-align: left;
+    }
+
+    .meta-label {
+      display: block;
+      color: #777;
+      font-size: .85rem;
+      letter-spacing: 1px;
+      margin-bottom: 5px;
+      text-transform: uppercase;
+    }
+
+    .meta-value {
+      color: #ddd;
+    }
+
+    .materials-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .artifact-section {
+      width: 100%;
+      border: 1px solid #333;
+      background: rgba(255,255,255,.02);
+      padding: clamp(20px, 4vw, 30px);
+      text-align: left;
+    }
+
+    .artifact-section h2 {
+      margin-top: 0;
+      color: white;
+    }
+
+    .placeholder {
+      min-height: 130px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 1px dashed #444;
+      color: #666;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .lyrics-box,
+    .notes-box {
+      white-space: pre-line;
+      line-height: 1.7;
+    }
+
+    .archive-actions {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      margin-top: 30px;
+    }
+
+    .archive-actions a {
+      margin-top: 0;
+    }
+
+    @media (min-width: 700px) {
+      .archive-meta {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .materials-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .artifact-section.full-width {
+        grid-column: 1 / -1;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<div class="container">
+  <main class="recovered-page">
 
-<h1>RECOVERY COMPLETE</h1>
+    <div class="container">
 
-<p><strong>Artifact successfully recovered.</strong></p>
+      <header class="archive-header">
 
-<hr>
+        <h1>RECOVERY COMPLETE</h1>
 
-<h2>Gutterlight Cinema</h2>
+        <p>
+          <strong>Artifact successfully recovered.</strong>
+        </p>
 
-<p>Welcome to Archive 001.</p>
+        <hr>
 
-<p>Movie Poster Coming Soon</p>
+        <h2>Gutterlight Cinema</h2>
 
-<p>Song Coming Soon</p>
+        <p>
+          Welcome to Archive 001.
+        </p>
 
-<p>Lyrics Coming Soon</p>
+      </header>
 
-<p>Downloads Coming Soon</p>
+      <section class="archive-meta">
 
-<br>
+        <div class="meta-card">
+          <span class="meta-label">Catalog Number</span>
+          <span class="meta-value">001</span>
+        </div>
 
-<a href="/">Return to Lost &amp; Found</a>
+        <div class="meta-card">
+          <span class="meta-label">Condition</span>
+          <span class="meta-value">Minor degradation</span>
+        </div>
 
-</div>
-  
-<script src="../../assets/js/atmosphere.js?v=2"></script></body>
+        <div class="meta-card">
+          <span class="meta-label">Recovery Status</span>
+          <span class="meta-value">97.2%</span>
+        </div>
+
+      </section>
+
+      <section class="materials-grid">
+
+        <article class="artifact-section">
+
+          <h2>Recovered Artwork</h2>
+
+          <div class="placeholder">
+            Movie poster coming soon
+          </div>
+
+        </article>
+
+        <article class="artifact-section">
+
+          <h2>Recovered Audio</h2>
+
+          <div class="placeholder">
+            Song player coming soon
+          </div>
+
+        </article>
+
+        <article class="artifact-section full-width">
+
+          <h2>Recovered Lyrics</h2>
+
+          <div class="lyrics-box">
+            Lyrics coming soon.
+          </div>
+
+        </article>
+
+        <article class="artifact-section">
+
+          <h2>Archivist Notes</h2>
+
+          <div class="notes-box">
+            Notes coming soon.
+          </div>
+
+        </article>
+
+        <article class="artifact-section">
+
+          <h2>Supplemental Files</h2>
+
+          <div class="placeholder">
+            Downloads coming soon
+          </div>
+
+        </article>
+
+      </section>
+
+      <nav class="archive-actions">
+
+        <a href="/archive/">
+          Return Item to Lost &amp; Found
+        </a>
+
+        <a href="/">
+          Return to Entrance
+        </a>
+
+      </nav>
+
+    </div>
+
+  </main>
+
+  <script src="../../assets/js/atmosphere.js?v=2"></script>
+
+</body>
 
 </html>
