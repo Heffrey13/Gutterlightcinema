@@ -109,7 +109,6 @@ button:hover {
   91%  { width: 88%; }
   100% { width: 100%; }
 }
-}
 
 .recovery-terminal {
   transition:
@@ -120,48 +119,6 @@ button:hover {
 
 .screen-flicker {
   animation: terminal-flicker 0.8s steps(2, end) forwards;
-}
-
-@keyframes terminal-flicker {
-  0% {
-    opacity: 1;
-    filter: brightness(1);
-    transform: translateX(0);
-  }
-
-  15% {
-    opacity: 0.2;
-    filter: brightness(2.5);
-    transform: translateX(-2px);
-  }
-
-  30% {
-    opacity: 1;
-    filter: brightness(0.7);
-    transform: translateX(2px);
-  }
-
-  45% {
-    opacity: 0.1;
-    filter: brightness(3);
-  }
-
-  60% {
-    opacity: 1;
-    filter: brightness(1);
-    transform: translateX(-1px);
-  }
-
-  75% {
-    opacity: 0.35;
-  }
-
-  100% {
-    opacity: 0;
-    filter: brightness(3);
-    transform: translateX(0);
-  }
-}
 }
 
 @keyframes terminal-flicker {
