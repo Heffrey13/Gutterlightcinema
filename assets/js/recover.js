@@ -1,89 +1,86 @@
 function recover(correctPhrase, destination) {
+
   const input = document
     .getElementById("pw")
     .value
     .trim()
     .toLowerCase();
 
-  const error = document.getElementById("error");
+  const error =
+    document.getElementById("error");
 
   if (input !== correctPhrase.toLowerCase()) {
+
     error.innerHTML =
       "Recovery failed.<br>Please examine the artifact again.";
+
     return;
   }
 
-  document.body.textContent = "";
+  document.body.innerHTML = `
+    <div class="container recovery-terminal" id="terminal">
 
-  const terminal = document.createElement("div");
-  terminal.className = "container recovery-terminal";
-  terminal.id = "terminal";
+      <h1>RECOVERING...</h1>
 
-  const heading = document.createElement("h1");
-  heading.textContent = "RECOVERING...";
-  terminal.appendChild(heading);
+      <p>Verifying artifact...</p>
 
-  createStage(
-    terminal,
-    "Verifying artifact...",
-    "fill-one"
-  );
+      <div class="bar">
+        <div class="fill fill-one"></div>
+      </div>
 
-  const line2 = createStage(
-    terminal,
-    "",
-    "fill-two"
-  );
-  line2.id = "line2";
+      <p id="line2">&nbsp;</p>
 
-  const line3 = createStage(
-    terminal,
-    "",
-    "fill-three"
-  );
-  line3.id = "line3";
+      <div class="bar">
+        <div class="fill fill-two"></div>
+      </div>
 
-  const finalMessage = document.createElement("p");
-  finalMessage.id = "final";
-  finalMessage.innerHTML = "&nbsp;";
-  terminal.appendChild(finalMessage);
+      <p id="line3">&nbsp;</p>
 
-  document.body.appendChild(terminal);
+      <div class="bar">
+        <div class="fill fill-three"></div>
+      </div>
+
+      <p id="final">&nbsp;</p>
+
+    </div>
+  `;
 
   setTimeout(() => {
-    line2.textContent = "Decrypting media...";
+
+    document.getElementById("line2")
+      .textContent =
+      "Decrypting media...";
+
   }, 2200);
 
   setTimeout(() => {
-    line3.textContent = "Restoring projection...";
+
+    document.getElementById("line3")
+      .textContent =
+      "Restoring projection...";
+
   }, 4600);
 
   setTimeout(() => {
-    finalMessage.textContent = "Projection ready.";
+
+    document.getElementById("final")
+      .textContent =
+      "Projection ready.";
+
   }, 7400);
 
   setTimeout(() => {
-    terminal.classList.add("screen-flicker");
+
+    document
+      .getElementById("terminal")
+      .classList.add("screen-flicker");
+
   }, 8000);
 
   setTimeout(() => {
-    window.location.href = destination;
+
+    window.location.href =
+      destination;
+
   }, 9000);
-}
-
-function createStage(parent, label, animationClass) {
-  const text = document.createElement("p");
-  text.textContent = label || "\u00A0";
-  parent.appendChild(text);
-
-  const bar = document.createElement("div");
-  bar.className = "bar";
-
-  const fill = document.createElement("div");
-  fill.className = "fill " + animationClass;
-
-  bar.appendChild(fill);
-  parent.appendChild(bar);
-
-  return text;
 }
