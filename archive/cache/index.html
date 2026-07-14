@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
+
+<title>UNINDEXED CACHE</title>
+
+<link
+  rel="stylesheet"
+  href="../../assets/css/style.css"
+>
+
+<style>
+
+body {
+
+  align-items:flex-start;
+
+  background:#020202;
+
+}
+
+.cache-warning {
+
+  color:#a33;
+
+  text-shadow:
+    0 0 8px rgba(255,0,0,.25);
+
+}
+
+.cache-file {
+
+  border:
+    1px solid rgba(180,40,40,.35);
+
+  background:
+    rgba(90,0,0,.05);
+
+  padding:18px;
+
+  margin:18px 0;
+
+  transition:.25s;
+
+}
+
+.cache-file:hover {
+
+  background:
+    rgba(120,0,0,.12);
+
+  border-color:
+    rgba(255,70,70,.5);
+
+}
+
+.cache-file a {
+
+  display:block;
+
+  width:100%;
+
+  text-decoration:none;
+
+  color:#d7b0b0;
+
+}
+
+.cache-status {
+
+  color:#8a5555;
+
+  font-size:.9rem;
+
+}
+
+.corrupted {
+
+  color:#777;
+
+}
+
+.glitch {
+
+  animation:
+    subtle-glitch
+    9s infinite;
+}
+
+@keyframes subtle-glitch {
+
+  0%,96%,100% {
+
+    transform:none;
+
+    opacity:1;
+
+  }
+
+  97% {
+
+    transform:
+      translateX(1px);
+
+    opacity:.85;
+
+  }
+
+  98% {
+
+    transform:
+      translateX(-1px);
+
+  }
+
+  99% {
+
+    transform:none;
+
+    opacity:1;
+
+  }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container glitch">
+
+<h1 class="cache-warning">
+
+UNINDEXED CACHE
+
+</h1>
+
+<hr>
+
+<p>
+
+WARNING:
+
+Recovered files below are not part of the public archive.
+
+Some files may be incomplete,
+corrupted, or improperly cataloged.
+
+</p>
+
+<br>
+
+<p>
+
+Files Indexed:
+2
+
+<br>
+
+Files Corrupted:
+17
+
+<br>
+
+Files Missing:
+84
+
+</p>
+
+<hr>
+
+<div class="cache-file">
+
+<a href="#">
+
+<strong>
+
+concept_art_001.png
+
+</strong>
+
+<br>
+
+<span class="cache-status">
+
+Recovered
+
+</span>
+
+</a>
+
+</div>
+
+<div class="cache-file">
+
+<a href="#">
+
+<strong>
+
+conversation_fragment_001.txt
+
+</strong>
+
+<br>
+
+<span class="cache-status">
+
+Recovered
+
+</span>
+
+</a>
+
+</div>
+
+<div class="cache-file corrupted">
+
+<strong>
+
+diary_fragment_002.txt
+
+</strong>
+
+<br>
+
+<span class="cache-status">
+
+Corrupted
+
+</span>
+
+</div>
+
+<div class="cache-file corrupted">
+
+<strong>
+
+unused_titles.log
+
+</strong>
+
+<br>
+
+<span class="cache-status">
+
+Locked
+
+</span>
+
+</div>
+
+<br>
+
+<a href="/archive/">
+
+EXIT CACHE
+
+</a>
+
+</div>
+
+<script src="../../assets/js/atmosphere.js?v=2"></script>
+
+</body>
+
+</html>
