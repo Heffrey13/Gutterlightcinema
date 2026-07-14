@@ -103,9 +103,18 @@
       background: rgba(100, 0, 0, 0.08);
     }
 
+    .redacted-file:hover {
+      border-color: #a33;
+      background: rgba(130, 0, 0, 0.14);
+    }
+
     .redacted-file .item-number,
     .redacted-file .item-title {
       color: #d7b0b0;
+    }
+
+    .redacted-file .item-status {
+      color: #9c5c5c;
     }
 
     .return-link {
@@ -199,17 +208,21 @@
           hidden
         >
 
-          <strong class="item-number">
-            FILE // ███████
-          </strong>
+          <a href="/archive/cache/">
 
-          <span class="item-title">
-            [REDACTED]
-          </span>
+            <strong class="item-number">
+              FILE // ███████
+            </strong>
 
-          <span class="item-status">
-            Status: Newly Indexed
-          </span>
+            <span class="item-title">
+              UNINDEXED CACHE
+            </span>
+
+            <span class="item-status">
+              Status: Newly Indexed
+            </span>
+
+          </a>
 
         </div>
 
