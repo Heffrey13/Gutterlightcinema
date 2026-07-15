@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
   <meta charset="UTF-8">
 
   <meta
@@ -17,6 +16,39 @@
     href="../../assets/css/style.css"
   >
 
+  <style>
+    .status-panel {
+      display: none;
+      margin-top: 24px;
+    }
+
+    .status-panel.is-visible {
+      display: block;
+    }
+
+    .status-label {
+      display: block;
+      margin-bottom: 8px;
+      color: #777;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .status-value {
+      display: block;
+      margin-bottom: 22px;
+      color: white;
+      font-size: 1.1rem;
+    }
+
+    .recovery-panel.is-hidden {
+      display: none;
+    }
+
+    .view-file-link {
+      margin-top: 0;
+    }
+  </style>
 </head>
 
 <body>
@@ -31,31 +63,60 @@
 
     <p><strong>Gutterlight Cinema</strong></p>
 
-    <p>
-      The required recovery phrase should be
-      present on the recovered artifact.
-    </p>
+    <section
+      id="recoveryPanel"
+      class="recovery-panel"
+    >
 
-    <form id="recoveryForm">
+      <p>
+        The required recovery phrase should be
+        present on the recovered artifact.
+      </p>
 
-      <input
-        id="pw"
-        name="recoveryPhrase"
-        type="password"
-        placeholder="Awaiting Input..."
-        autocomplete="off"
-        enterkeyhint="go"
+      <form id="recoveryForm">
+
+        <input
+          id="pw"
+          name="recoveryPhrase"
+          type="password"
+          placeholder="Awaiting Input..."
+          autocomplete="off"
+          enterkeyhint="go"
+        >
+
+        <br><br>
+
+        <button type="submit">
+          Recover Item
+        </button>
+
+      </form>
+
+      <p id="error"></p>
+
+    </section>
+
+    <section
+      id="statusPanel"
+      class="status-panel"
+    >
+
+      <span class="status-label">
+        Status
+      </span>
+
+      <strong class="status-value">
+        Recovered
+      </strong>
+
+      <a
+        class="view-file-link"
+        href="recovered.html"
       >
+        View File
+      </a>
 
-      <br><br>
-
-      <button type="submit">
-        Recover Item
-      </button>
-
-    </form>
-
-    <p id="error"></p>
+    </section>
 
   </div>
 
@@ -63,6 +124,11 @@
   <script src="../../assets/js/atmosphere.js?v=2"></script>
 
   <script>
+    const recoveryPanel =
+      document.getElementById("recoveryPanel");
+
+    const statusPanel =
+      document.getElementById("statusPanel");
 
     const recoveryForm =
       document.getElementById("recoveryForm");
@@ -70,29 +136,36 @@
     const passwordField =
       document.getElementById("pw");
 
-    recoveryForm.addEventListener(
-      "submit",
-      function (event) {
+    const itemRecovered =
+      localStorage.getItem("item001Recovered") === "true";
 
-        event.preventDefault();
+    function showRecoveredState() {
+      recoveryPanel.classList.add("is-hidden");
+      statusPanel.classList.add("is-visible");
+    }
 
-        recover(
-          "projectionist",
-          "recovered.html"
-        );
+    if (itemRecovered) {
+      showRecoveredState();
+    } else {
+      recoveryForm.addEventListener(
+        "submit",
+        function (event) {
+          event.preventDefault();
 
-      }
-    );
+          recover(
+            "projectionist",
+            "recovered.html"
+          );
+        }
+      );
 
-    window.addEventListener(
-      "load",
-      function () {
-
-        passwordField.focus();
-
-      }
-    );
-
+      window.addEventListener(
+        "load",
+        function () {
+          passwordField.focus();
+        }
+      );
+    }
   </script>
 
 </body>
