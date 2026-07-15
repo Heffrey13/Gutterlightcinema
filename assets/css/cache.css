@@ -41,26 +41,22 @@ body {
 }
 
 .cache-shell {
-  position: relative;
-  z-index: 3;
 
-  width: min(94vw, 980px);
+  width:100%;
 
-  margin:
-    0 auto;
+  max-width:1200px;
 
-  border:
-    1px solid rgba(210, 42, 62, 0.34);
-
-  background:
-    rgba(3, 3, 6, 0.88);
-
-  box-shadow:
-    0 0 40px rgba(160, 0, 28, 0.10),
-    inset 0 0 40px rgba(255, 255, 255, 0.018);
+  margin:0 auto;
 
   padding:
-    clamp(22px, 4vw, 42px);
+    clamp(25px,4vw,50px);
+
+  border:none;
+
+  background:none;
+
+  box-shadow:none;
+
 }
 
 .cache-shell::before {
@@ -602,4 +598,52 @@ body {
   .cache-noise {
     animation: none;
   }
+}
+.cache-entry {
+
+  padding:
+    14px 0;
+
+  border-bottom:
+    1px solid
+    rgba(255,255,255,.05);
+
+  transition:
+    .2s;
+
+}
+
+.cache-entry:hover {
+
+  padding-left:12px;
+
+  background:
+    rgba(255,0,0,.03);
+
+}
+
+.cache-entry a:hover {
+
+  color:#fff !important;
+
+}
+
+.cache-system-message {
+
+  position:fixed;
+
+  top:25px;
+
+  right:25px;
+
+  color:#933;
+
+  font-size:.85rem;
+
+  opacity:0;
+
+  pointer-events:none;
+
+  transition:.3s;
+
 }
