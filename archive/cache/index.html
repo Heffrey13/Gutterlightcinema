@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+
   <meta charset="UTF-8">
 
   <meta
@@ -17,6 +18,7 @@
   >
 
   <style>
+
     body {
       align-items: flex-start;
       background: #020202;
@@ -37,84 +39,91 @@
 
     .warning-panel {
       min-height: 70vh;
+
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
+
+      text-align: center;
     }
 
     .warning-title {
       color: #c94444;
+
       text-shadow:
-        0 0 8px rgba(255, 0, 0, 0.3),
-        0 0 18px rgba(255, 0, 0, 0.12);
+        0 0 8px rgba(255,0,0,.35),
+        0 0 18px rgba(255,0,0,.15);
     }
 
     .warning-copy {
       max-width: 620px;
-      line-height: 1.7;
+      line-height: 1.8;
       color: #b9a4a4;
     }
 
     .warning-actions {
       display: flex;
       flex-direction: column;
-      align-items: center;
       gap: 14px;
-      margin-top: 28px;
-      width: 100%;
-    }
-
-    .warning-actions button,
-    .warning-actions a {
-      margin-top: 0;
+      margin-top: 30px;
     }
 
     .cache-warning {
       color: #a33;
+
       text-shadow:
-        0 0 8px rgba(255, 0, 0, 0.25);
+        0 0 8px rgba(255,0,0,.25);
     }
 
     .cache-file {
-      border: 1px solid rgba(180, 40, 40, 0.35);
-      background: rgba(90, 0, 0, 0.05);
+
+      border:
+        1px solid rgba(180,40,40,.35);
+
+      background:
+        rgba(90,0,0,.05);
+
       padding: 18px;
+
       margin: 18px 0;
+
       transition:
-        background 0.25s ease,
-        border-color 0.25s ease,
-        transform 0.25s ease;
+        background .25s ease,
+        border-color .25s ease,
+        transform .25s ease;
+
     }
 
     .cache-file:hover {
-      background: rgba(120, 0, 0, 0.12);
-      border-color: rgba(255, 70, 70, 0.5);
-      transform: translateY(-2px);
+
+      background:
+        rgba(120,0,0,.12);
+
+      border-color:
+        rgba(255,70,70,.5);
+
+      transform:
+        translateY(-2px);
+
     }
 
     .cache-file a {
-      display: block;
-      width: 100%;
-      max-width: none;
-      margin: 0;
-      padding: 0;
-      border: none;
-      background: transparent;
-      text-decoration: none;
-      color: #d7b0b0;
-      text-align: left;
-    }
 
-    .cache-file a:hover {
-      background: transparent;
-      color: #f0caca;
-      box-shadow: none;
+      display: block;
+
+      text-decoration: none;
+
+      color: #d7b0b0;
+
     }
 
     .cache-status {
+
       color: #8a5555;
-      font-size: 0.9rem;
+
+      font-size: .9rem;
+
     }
 
     .corrupted {
@@ -122,74 +131,118 @@
     }
 
     .glitch {
-      animation: subtle-glitch 9s infinite;
-    }
 
-    .cache-entering {
       animation:
-        cache-entry-flicker 0.9s steps(2, end)
-        forwards;
+        subtle-glitch 9s infinite;
+
     }
 
     @keyframes subtle-glitch {
-      0%,
-      96%,
-      100% {
+
+      0%,96%,100% {
+
         transform: none;
         opacity: 1;
+
       }
 
       97% {
-        transform: translateX(1px);
-        opacity: 0.85;
+
+        transform:
+          translateX(1px);
+
+        opacity: .85;
+
       }
 
       98% {
-        transform: translateX(-1px);
+
+        transform:
+          translateX(-1px);
+
       }
 
       99% {
+
         transform: none;
         opacity: 1;
+
       }
+
     }
 
-    @keyframes cache-entry-flicker {
+    .cache-entering {
+
+      animation:
+        cache-entry .9s steps(2,end)
+        forwards;
+
+    }
+
+    @keyframes cache-entry {
+
       0% {
+
         opacity: 1;
         filter: brightness(1);
+
       }
 
       20% {
-        opacity: 0.15;
-        filter: brightness(2.8);
-        transform: translateX(-3px);
+
+        opacity: .15;
+
+        filter:
+          brightness(2.8);
+
+        transform:
+          translateX(-3px);
+
       }
 
       40% {
+
         opacity: 1;
-        filter: brightness(0.65);
-        transform: translateX(2px);
+
+        filter:
+          brightness(.65);
+
+        transform:
+          translateX(2px);
+
       }
 
       60% {
-        opacity: 0.25;
-        filter: brightness(2.2);
+
+        opacity: .25;
+
+        filter:
+          brightness(2.2);
+
       }
 
       80% {
+
         opacity: 1;
-        filter: brightness(1.1);
-        transform: translateX(-1px);
+
+        transform:
+          translateX(-1px);
+
       }
 
       100% {
+
         opacity: 0;
-        filter: brightness(3);
-        transform: translateX(0);
+
+        filter:
+          brightness(3);
+
       }
+
     }
+
   </style>
+
 </head>
 
 <body>
@@ -202,22 +255,32 @@
     >
 
       <h1 class="warning-title">
+
         ACCESS WARNING
+
       </h1>
 
       <hr>
 
       <p class="warning-copy">
+
         This area is not part of the public archive.
+
       </p>
 
       <p class="warning-copy">
-        Recovered files may be incomplete, corrupted,
-        improperly cataloged, or actively unstable.
+
+        Recovered files may be incomplete,
+        corrupted, improperly cataloged,
+        or actively unstable.
+
       </p>
 
       <p class="warning-copy">
-        Continued access may expose unindexed material.
+
+        Continued access may expose
+        unindexed material.
+
       </p>
 
       <div class="warning-actions">
@@ -226,11 +289,15 @@
           id="continueButton"
           type="button"
         >
+
           Continue
+
         </button>
 
         <a href="/archive/">
+
           Exit
+
         </a>
 
       </div>
@@ -243,39 +310,47 @@
     >
 
       <h1 class="cache-warning">
+
         UNINDEXED CACHE
+
       </h1>
 
       <hr>
 
       <p>
+
         WARNING:
+
       </p>
 
       <p>
-        Recovered files below are not part of the public archive.
+
+        Recovered files below are not
+        part of the public archive.
+
       </p>
 
       <p>
+
         Some files may be incomplete,
         corrupted, or improperly cataloged.
+
       </p>
 
       <br>
 
       <p>
-        Files Indexed:
-        2
+
+        Files Indexed: 2
 
         <br>
 
-        Files Corrupted:
-        17
+        Files Corrupted: 17
 
         <br>
 
-        Files Missing:
-        84
+        Files Missing: 84
+
       </p>
 
       <hr>
@@ -285,13 +360,17 @@
         <a href="#">
 
           <strong>
+
             concept_art_001.png
+
           </strong>
 
           <br>
 
           <span class="cache-status">
+
             Recovered
+
           </span>
 
         </a>
@@ -303,13 +382,17 @@
         <a href="conversation_fragment_001.html">
 
           <strong>
+
             conversation_fragment_001.txt
+
           </strong>
 
           <br>
 
           <span class="cache-status">
+
             Recovered
+
           </span>
 
         </a>
@@ -319,13 +402,17 @@
       <div class="cache-file corrupted">
 
         <strong>
+
           diary_fragment_002.txt
+
         </strong>
 
         <br>
 
         <span class="cache-status">
+
           Corrupted
+
         </span>
 
       </div>
@@ -333,13 +420,17 @@
       <div class="cache-file corrupted">
 
         <strong>
+
           unused_titles.log
+
         </strong>
 
         <br>
 
         <span class="cache-status">
+
           Locked
+
         </span>
 
       </div>
@@ -347,7 +438,9 @@
       <br>
 
       <a href="/archive/">
+
         EXIT CACHE
+
       </a>
 
     </section>
@@ -357,23 +450,32 @@
   <script src="../../assets/js/atmosphere.js?v=2"></script>
 
   <script>
+
     const warningScreen =
-      document.getElementById("warningScreen");
+      document.getElementById(
+        "warningScreen"
+      );
 
     const cacheScreen =
-      document.getElementById("cacheScreen");
+      document.getElementById(
+        "cacheScreen"
+      );
 
     const continueButton =
-      document.getElementById("continueButton");
+      document.getElementById(
+        "continueButton"
+      );
 
     continueButton.addEventListener(
       "click",
       function () {
+
         warningScreen.classList.add(
           "cache-entering"
         );
 
         setTimeout(() => {
+
           warningScreen.classList.remove(
             "is-visible"
           );
@@ -381,9 +483,12 @@
           cacheScreen.classList.add(
             "is-visible"
           );
+
         }, 900);
+
       }
     );
+
   </script>
 
 </body>
