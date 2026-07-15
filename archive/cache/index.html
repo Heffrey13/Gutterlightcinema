@@ -14,234 +14,8 @@
 
   <link
     rel="stylesheet"
-    href="../../assets/css/style.css"
+    href="../../assets/css/cache.css"
   >
-
-  <style>
-
-    body {
-      align-items: flex-start;
-      background: #020202;
-    }
-
-    .cache-shell {
-      width: min(92vw, 900px);
-      margin: 0 auto;
-    }
-
-    .cache-screen {
-      display: none;
-    }
-
-    .cache-screen.is-visible {
-      display: block;
-    }
-
-    .warning-panel {
-      min-height: 70vh;
-
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-
-      text-align: center;
-    }
-
-    .warning-title {
-      color: #c94444;
-
-      text-shadow:
-        0 0 8px rgba(255,0,0,.35),
-        0 0 18px rgba(255,0,0,.15);
-    }
-
-    .warning-copy {
-      max-width: 620px;
-      line-height: 1.8;
-      color: #b9a4a4;
-    }
-
-    .warning-actions {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      margin-top: 30px;
-    }
-
-    .cache-warning {
-      color: #a33;
-
-      text-shadow:
-        0 0 8px rgba(255,0,0,.25);
-    }
-
-    .cache-file {
-
-      border:
-        1px solid rgba(180,40,40,.35);
-
-      background:
-        rgba(90,0,0,.05);
-
-      padding: 18px;
-
-      margin: 18px 0;
-
-      transition:
-        background .25s ease,
-        border-color .25s ease,
-        transform .25s ease;
-
-    }
-
-    .cache-file:hover {
-
-      background:
-        rgba(120,0,0,.12);
-
-      border-color:
-        rgba(255,70,70,.5);
-
-      transform:
-        translateY(-2px);
-
-    }
-
-    .cache-file a {
-
-      display: block;
-
-      text-decoration: none;
-
-      color: #d7b0b0;
-
-    }
-
-    .cache-status {
-
-      color: #8a5555;
-
-      font-size: .9rem;
-
-    }
-
-    .corrupted {
-      color: #777;
-    }
-
-    .glitch {
-
-      animation:
-        subtle-glitch 9s infinite;
-
-    }
-
-    @keyframes subtle-glitch {
-
-      0%,96%,100% {
-
-        transform: none;
-        opacity: 1;
-
-      }
-
-      97% {
-
-        transform:
-          translateX(1px);
-
-        opacity: .85;
-
-      }
-
-      98% {
-
-        transform:
-          translateX(-1px);
-
-      }
-
-      99% {
-
-        transform: none;
-        opacity: 1;
-
-      }
-
-    }
-
-    .cache-entering {
-
-      animation:
-        cache-entry .9s steps(2,end)
-        forwards;
-
-    }
-
-    @keyframes cache-entry {
-
-      0% {
-
-        opacity: 1;
-        filter: brightness(1);
-
-      }
-
-      20% {
-
-        opacity: .15;
-
-        filter:
-          brightness(2.8);
-
-        transform:
-          translateX(-3px);
-
-      }
-
-      40% {
-
-        opacity: 1;
-
-        filter:
-          brightness(.65);
-
-        transform:
-          translateX(2px);
-
-      }
-
-      60% {
-
-        opacity: .25;
-
-        filter:
-          brightness(2.2);
-
-      }
-
-      80% {
-
-        opacity: 1;
-
-        transform:
-          translateX(-1px);
-
-      }
-
-      100% {
-
-        opacity: 0;
-
-        filter:
-          brightness(3);
-
-      }
-
-    }
-
-  </style>
 
 </head>
 
@@ -249,26 +23,31 @@
 
   <main class="cache-shell">
 
+    <!-- WARNING SCREEN -->
+
     <section
       id="warningScreen"
-      class="container warning-panel cache-screen is-visible"
+      class="
+        cache-warning-screen
+        cache-visible
+      "
     >
 
-      <h1 class="warning-title">
+      <h1 class="cache-title">
 
         ACCESS WARNING
 
       </h1>
 
-      <hr>
+      <hr class="cache-rule">
 
-      <p class="warning-copy">
+      <p class="cache-subtitle">
 
         This area is not part of the public archive.
 
       </p>
 
-      <p class="warning-copy">
+      <p class="cache-subtitle">
 
         Recovered files may be incomplete,
         corrupted, improperly cataloged,
@@ -276,17 +55,18 @@
 
       </p>
 
-      <p class="warning-copy">
+      <p class="cache-subtitle">
 
         Continued access may expose
         unindexed material.
 
       </p>
 
-      <div class="warning-actions">
+      <div class="cache-actions">
 
         <button
           id="continueButton"
+          class="cache-button"
           type="button"
         >
 
@@ -294,7 +74,10 @@
 
         </button>
 
-        <a href="/archive/">
+        <a
+          class="cache-link"
+          href="/archive/"
+        >
 
           Exit
 
@@ -304,150 +87,225 @@
 
     </section>
 
+    <!-- CACHE -->
+
     <section
       id="cacheScreen"
-      class="container cache-screen glitch"
+      class="
+        cache-hidden
+        cache-glitch
+      "
     >
 
-      <h1 class="cache-warning">
+      <h1 class="cache-title">
 
         UNINDEXED CACHE
 
       </h1>
 
-      <hr>
+      <hr class="cache-rule">
 
-      <p>
+      <p class="cache-warning">
 
-        WARNING:
+        WARNING
 
       </p>
 
-      <p>
+      <p class="cache-subtitle">
 
         Recovered files below are not
         part of the public archive.
 
       </p>
 
-      <p>
+      <p class="cache-subtitle">
 
         Some files may be incomplete,
-        corrupted, or improperly cataloged.
+        corrupted,
+        or improperly cataloged.
 
       </p>
 
-      <br>
+      <!-- STATS -->
 
-      <p>
+      <div class="cache-stats">
 
-        Files Indexed: 2
+        <div class="cache-stat">
 
-        <br>
-
-        Files Corrupted: 17
-
-        <br>
-
-        Files Missing: 84
-
-      </p>
-
-      <hr>
-
-      <div class="cache-file">
-
-        <a href="#">
-
-          <strong>
-
-            concept_art_001.png
-
-          </strong>
-
-          <br>
-
-          <span class="cache-status">
-
-            Recovered
-
+          <span
+            class="cache-stat-label"
+          >
+            Files Indexed
           </span>
+
+          <span
+            class="cache-stat-value"
+            id="indexedValue"
+          >
+            2
+          </span>
+
+        </div>
+
+        <div class="cache-stat">
+
+          <span
+            class="cache-stat-label"
+          >
+            Corrupted
+          </span>
+
+          <span
+            class="cache-stat-value"
+          >
+            17
+          </span>
+
+        </div>
+
+        <div class="cache-stat">
+
+          <span
+            class="cache-stat-label"
+          >
+            Missing
+          </span>
+
+          <span
+            class="cache-stat-value"
+            id="missingValue"
+          >
+            84
+          </span>
+
+        </div>
+
+      </div>
+
+      <hr class="cache-rule">
+
+      <!-- FILES -->
+
+      <div class="cache-list">
+
+        <div class="cache-file">
+
+          <a href="#">
+
+            <span
+              class="cache-filename"
+            >
+              concept_art_001.png
+            </span>
+
+            <span
+              class="cache-status"
+            >
+              Recovered
+            </span>
+
+          </a>
+
+        </div>
+
+        <div class="cache-file">
+
+          <a
+            href="conversation_fragment_001.html"
+          >
+
+            <span
+              class="cache-filename"
+            >
+              conversation_fragment_001.txt
+            </span>
+
+            <span
+              class="cache-status"
+            >
+              Recovered
+            </span>
+
+          </a>
+
+        </div>
+
+        <div
+          class="
+            cache-file
+            corrupted
+          "
+        >
+
+          <div
+            class="cache-file-static"
+          >
+
+            <span
+              class="cache-filename"
+            >
+              diary_fragment_002.txt
+            </span>
+
+            <span
+              class="cache-status"
+            >
+              Corrupted
+            </span>
+
+          </div>
+
+        </div>
+
+        <div
+          class="
+            cache-file
+            corrupted
+          "
+        >
+
+          <div
+            class="cache-file-static"
+          >
+
+            <span
+              class="cache-filename"
+            >
+              unused_titles.log
+            </span>
+
+            <span
+              class="cache-status"
+            >
+              Locked
+            </span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="cache-actions">
+
+        <a
+          class="cache-link"
+          href="/archive/"
+        >
+
+          EXIT CACHE
 
         </a>
 
       </div>
-
-      <div class="cache-file">
-
-        <a href="conversation_fragment_001.html">
-
-          <strong>
-
-            conversation_fragment_001.txt
-
-          </strong>
-
-          <br>
-
-          <span class="cache-status">
-
-            Recovered
-
-          </span>
-
-        </a>
-
-      </div>
-
-      <div class="cache-file corrupted">
-
-        <strong>
-
-          diary_fragment_002.txt
-
-        </strong>
-
-        <br>
-
-        <span class="cache-status">
-
-          Corrupted
-
-        </span>
-
-      </div>
-
-      <div class="cache-file corrupted">
-
-        <strong>
-
-          unused_titles.log
-
-        </strong>
-
-        <br>
-
-        <span class="cache-status">
-
-          Locked
-
-        </span>
-
-      </div>
-
-      <br>
-
-      <a href="/archive/">
-
-        EXIT CACHE
-
-      </a>
 
     </section>
 
   </main>
 
-  <script src="../../assets/js/atmosphere.js?v=2"></script>
+  <script
+    src="../../assets/js/cache-atmosphere.js"
+  ></script>
 
   <script>
 
@@ -471,20 +329,31 @@
       function () {
 
         warningScreen.classList.add(
-          "cache-entering"
+          "cache-entry-flicker"
         );
 
-        setTimeout(() => {
+        setTimeout(
+          function () {
 
-          warningScreen.classList.remove(
-            "is-visible"
-          );
+            warningScreen.classList.remove(
+              "cache-visible"
+            );
 
-          cacheScreen.classList.add(
-            "is-visible"
-          );
+            warningScreen.classList.add(
+              "cache-hidden"
+            );
 
-        }, 900);
+            cacheScreen.classList.remove(
+              "cache-hidden"
+            );
+
+            cacheScreen.classList.add(
+              "cache-visible"
+            );
+
+          },
+          950
+        );
 
       }
     );
