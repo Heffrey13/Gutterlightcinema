@@ -90,216 +90,228 @@
     <!-- CACHE -->
 
     <section
-      id="cacheScreen"
-      class="
-        cache-hidden
-        cache-glitch
-      "
-    >
+  id="cacheScreen"
+  class="
+    cache-hidden
+    cache-glitch
+  "
+>
 
-      <h1 class="cache-title">
+<div
+  style="
+    text-align:left;
+    max-width:900px;
+    margin:auto;
+  "
+>
 
-        UNINDEXED CACHE
+<p
+  style="
+    color:#777;
+    letter-spacing:2px;
+    margin-bottom:6px;
+  "
+>
+CACHE://UNSORTED
+</p>
 
-      </h1>
+<p
+  style="
+    color:#555;
+    margin-top:0;
+    margin-bottom:40px;
+    font-size:.9rem;
+  "
+>
+BUILD 0.3.17
+</p>
 
-      <hr class="cache-rule">
+<p style="color:#a55;">
+STATUS
+</p>
 
-      <p class="cache-warning">
+<p style="line-height:2;">
 
-        WARNING
+INDEX: PARTIAL
 
-      </p>
+<br><br>
 
-      <p class="cache-subtitle">
+Recovered Nodes:
+<span id="indexedValue">
 
-        Recovered files below are not
-        part of the public archive.
+2
 
-      </p>
+</span>
 
-      <p class="cache-subtitle">
+<br>
 
-        Some files may be incomplete,
-        corrupted,
-        or improperly cataloged.
+Residual Fragments:
 
-      </p>
+17
 
-      <!-- STATS -->
+<br>
 
-      <div class="cache-stats">
+Unknown Objects:
+<span id="missingValue">
 
-        <div class="cache-stat">
+84
 
-          <span
-            class="cache-stat-label"
-          >
-            Files Indexed
-          </span>
+</span>
 
-          <span
-            class="cache-stat-value"
-            id="indexedValue"
-          >
-            2
-          </span>
+</p>
 
-        </div>
+<hr class="cache-rule">
 
-        <div class="cache-stat">
+<div
+  id="cacheFiles"
+  style="
+    margin-top:35px;
+    line-height:2.5;
+  "
+>
 
-          <span
-            class="cache-stat-label"
-          >
-            Corrupted
-          </span>
+<div class="cache-entry">
 
-          <span
-            class="cache-stat-value"
-          >
-            17
-          </span>
+>
 
-        </div>
+<a
+  href="#"
+  style="
+    color:#ddd;
+    text-decoration:none;
+  "
+>
 
-        <div class="cache-stat">
+concept_art_001.png
 
-          <span
-            class="cache-stat-label"
-          >
-            Missing
-          </span>
+</a>
 
-          <span
-            class="cache-stat-value"
-            id="missingValue"
-          >
-            84
-          </span>
+<br>
 
-        </div>
+<span
+  style="
+    color:#666;
+    font-size:.85rem;
+  "
+>
 
-      </div>
+recovered • modified 09.05.87
 
-      <hr class="cache-rule">
+</span>
 
-      <!-- FILES -->
+</div>
 
-      <div class="cache-list">
+<br>
 
-        <div class="cache-file">
+<div class="cache-entry">
 
-          <a href="#">
+>
 
-            <span
-              class="cache-filename"
-            >
-              concept_art_001.png
-            </span>
+<a
+  href="conversation_fragment_001.html"
+  style="
+    color:#ddd;
+    text-decoration:none;
+  "
+>
 
-            <span
-              class="cache-status"
-            >
-              Recovered
-            </span>
+conversation_fragment_001.txt
 
-          </a>
+</a>
 
-        </div>
+<br>
 
-        <div class="cache-file">
+<span
+  style="
+    color:#666;
+    font-size:.85rem;
+  "
+>
 
-          <a
-            href="conversation_fragment_001.html"
-          >
+recovered • modified unknown
 
-            <span
-              class="cache-filename"
-            >
-              conversation_fragment_001.txt
-            </span>
+</span>
 
-            <span
-              class="cache-status"
-            >
-              Recovered
-            </span>
+</div>
 
-          </a>
+<br>
 
-        </div>
+<div class="cache-entry">
 
-        <div
-          class="
-            cache-file
-            corrupted
-          "
-        >
+>
 
-          <div
-            class="cache-file-static"
-          >
+<span style="color:#777;">
 
-            <span
-              class="cache-filename"
-            >
-              diary_fragment_002.txt
-            </span>
+diary_fragment_002.txt
 
-            <span
-              class="cache-status"
-            >
-              Corrupted
-            </span>
+</span>
 
-          </div>
+<br>
 
-        </div>
+<span
+  style="
+    color:#555;
+    font-size:.85rem;
+  "
+>
 
-        <div
-          class="
-            cache-file
-            corrupted
-          "
-        >
+corrupted
 
-          <div
-            class="cache-file-static"
-          >
+</span>
 
-            <span
-              class="cache-filename"
-            >
-              unused_titles.log
-            </span>
+</div>
 
-            <span
-              class="cache-status"
-            >
-              Locked
-            </span>
+<br>
 
-          </div>
+<div class="cache-entry">
 
-        </div>
+>
 
-      </div>
+<span style="color:#555;">
 
-      <div class="cache-actions">
+█████████████.txt
 
-        <a
-          class="cache-link"
-          href="/archive/"
-        >
+</span>
 
-          EXIT CACHE
+<br>
 
-        </a>
+<span
+  style="
+    color:#444;
+    font-size:.85rem;
+  "
+>
 
-      </div>
+access denied
 
-    </section>
+</span>
+
+</div>
+
+</div>
+
+<hr class="cache-rule">
+
+<div
+  style="
+    margin-top:35px;
+  "
+>
+
+<a
+  class="cache-link"
+  href="/archive/"
+>
+
+EXIT CACHE
+
+</a>
+
+</div>
+
+</div>
+
+</section>
 
   </main>
 
