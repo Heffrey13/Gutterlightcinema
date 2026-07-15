@@ -2,276 +2,389 @@
 <html lang="en">
 
 <head>
+  <meta charset="UTF-8">
 
-<meta charset="UTF-8">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
-<meta
-  name="viewport"
-  content="width=device-width, initial-scale=1.0"
->
+  <title>UNINDEXED CACHE</title>
 
-<title>UNINDEXED CACHE</title>
+  <link
+    rel="stylesheet"
+    href="../../assets/css/style.css"
+  >
 
-<link
-  rel="stylesheet"
-  href="../../assets/css/style.css"
->
+  <style>
+    body {
+      align-items: flex-start;
+      background: #020202;
+    }
 
-<style>
+    .cache-shell {
+      width: min(92vw, 900px);
+      margin: 0 auto;
+    }
 
-body {
+    .cache-screen {
+      display: none;
+    }
 
-  align-items:flex-start;
+    .cache-screen.is-visible {
+      display: block;
+    }
 
-  background:#020202;
+    .warning-panel {
+      min-height: 70vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
 
-}
+    .warning-title {
+      color: #c94444;
+      text-shadow:
+        0 0 8px rgba(255, 0, 0, 0.3),
+        0 0 18px rgba(255, 0, 0, 0.12);
+    }
 
-.cache-warning {
+    .warning-copy {
+      max-width: 620px;
+      line-height: 1.7;
+      color: #b9a4a4;
+    }
 
-  color:#a33;
+    .warning-actions {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      margin-top: 28px;
+      width: 100%;
+    }
 
-  text-shadow:
-    0 0 8px rgba(255,0,0,.25);
+    .warning-actions button,
+    .warning-actions a {
+      margin-top: 0;
+    }
 
-}
+    .cache-warning {
+      color: #a33;
+      text-shadow:
+        0 0 8px rgba(255, 0, 0, 0.25);
+    }
 
-.cache-file {
+    .cache-file {
+      border: 1px solid rgba(180, 40, 40, 0.35);
+      background: rgba(90, 0, 0, 0.05);
+      padding: 18px;
+      margin: 18px 0;
+      transition:
+        background 0.25s ease,
+        border-color 0.25s ease,
+        transform 0.25s ease;
+    }
 
-  border:
-    1px solid rgba(180,40,40,.35);
+    .cache-file:hover {
+      background: rgba(120, 0, 0, 0.12);
+      border-color: rgba(255, 70, 70, 0.5);
+      transform: translateY(-2px);
+    }
 
-  background:
-    rgba(90,0,0,.05);
+    .cache-file a {
+      display: block;
+      width: 100%;
+      max-width: none;
+      margin: 0;
+      padding: 0;
+      border: none;
+      background: transparent;
+      text-decoration: none;
+      color: #d7b0b0;
+      text-align: left;
+    }
 
-  padding:18px;
+    .cache-file a:hover {
+      background: transparent;
+      color: #f0caca;
+      box-shadow: none;
+    }
 
-  margin:18px 0;
+    .cache-status {
+      color: #8a5555;
+      font-size: 0.9rem;
+    }
 
-  transition:.25s;
+    .corrupted {
+      color: #777;
+    }
 
-}
+    .glitch {
+      animation: subtle-glitch 9s infinite;
+    }
 
-.cache-file:hover {
+    .cache-entering {
+      animation:
+        cache-entry-flicker 0.9s steps(2, end)
+        forwards;
+    }
 
-  background:
-    rgba(120,0,0,.12);
+    @keyframes subtle-glitch {
+      0%,
+      96%,
+      100% {
+        transform: none;
+        opacity: 1;
+      }
 
-  border-color:
-    rgba(255,70,70,.5);
+      97% {
+        transform: translateX(1px);
+        opacity: 0.85;
+      }
 
-}
+      98% {
+        transform: translateX(-1px);
+      }
 
-.cache-file a {
+      99% {
+        transform: none;
+        opacity: 1;
+      }
+    }
 
-  display:block;
+    @keyframes cache-entry-flicker {
+      0% {
+        opacity: 1;
+        filter: brightness(1);
+      }
 
-  width:100%;
+      20% {
+        opacity: 0.15;
+        filter: brightness(2.8);
+        transform: translateX(-3px);
+      }
 
-  text-decoration:none;
+      40% {
+        opacity: 1;
+        filter: brightness(0.65);
+        transform: translateX(2px);
+      }
 
-  color:#d7b0b0;
+      60% {
+        opacity: 0.25;
+        filter: brightness(2.2);
+      }
 
-}
+      80% {
+        opacity: 1;
+        filter: brightness(1.1);
+        transform: translateX(-1px);
+      }
 
-.cache-status {
-
-  color:#8a5555;
-
-  font-size:.9rem;
-
-}
-
-.corrupted {
-
-  color:#777;
-
-}
-
-.glitch {
-
-  animation:
-    subtle-glitch
-    9s infinite;
-}
-
-@keyframes subtle-glitch {
-
-  0%,96%,100% {
-
-    transform:none;
-
-    opacity:1;
-
-  }
-
-  97% {
-
-    transform:
-      translateX(1px);
-
-    opacity:.85;
-
-  }
-
-  98% {
-
-    transform:
-      translateX(-1px);
-
-  }
-
-  99% {
-
-    transform:none;
-
-    opacity:1;
-
-  }
-
-}
-
-</style>
-
+      100% {
+        opacity: 0;
+        filter: brightness(3);
+        transform: translateX(0);
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<div class="container glitch">
+  <main class="cache-shell">
 
-<h1 class="cache-warning">
+    <section
+      id="warningScreen"
+      class="container warning-panel cache-screen is-visible"
+    >
 
-UNINDEXED CACHE
+      <h1 class="warning-title">
+        ACCESS WARNING
+      </h1>
 
-</h1>
+      <hr>
 
-<hr>
+      <p class="warning-copy">
+        This area is not part of the public archive.
+      </p>
 
-<p>
+      <p class="warning-copy">
+        Recovered files may be incomplete, corrupted,
+        improperly cataloged, or actively unstable.
+      </p>
 
-WARNING:
+      <p class="warning-copy">
+        Continued access may expose unindexed material.
+      </p>
 
-Recovered files below are not part of the public archive.
+      <div class="warning-actions">
 
-Some files may be incomplete,
-corrupted, or improperly cataloged.
+        <button
+          id="continueButton"
+          type="button"
+        >
+          Continue
+        </button>
 
-</p>
+        <a href="/archive/">
+          Exit
+        </a>
 
-<br>
+      </div>
 
-<p>
+    </section>
 
-Files Indexed:
-2
+    <section
+      id="cacheScreen"
+      class="container cache-screen glitch"
+    >
 
-<br>
+      <h1 class="cache-warning">
+        UNINDEXED CACHE
+      </h1>
 
-Files Corrupted:
-17
+      <hr>
 
-<br>
+      <p>
+        WARNING:
+      </p>
 
-Files Missing:
-84
+      <p>
+        Recovered files below are not part of the public archive.
+      </p>
 
-</p>
+      <p>
+        Some files may be incomplete,
+        corrupted, or improperly cataloged.
+      </p>
 
-<hr>
+      <br>
 
-<div class="cache-file">
+      <p>
+        Files Indexed:
+        2
 
-<a href="#">
+        <br>
 
-<strong>
+        Files Corrupted:
+        17
 
-concept_art_001.png
+        <br>
 
-</strong>
+        Files Missing:
+        84
+      </p>
 
-<br>
+      <hr>
 
-<span class="cache-status">
+      <div class="cache-file">
 
-Recovered
+        <a href="#">
 
-</span>
+          <strong>
+            concept_art_001.png
+          </strong>
 
-</a>
+          <br>
 
-</div>
+          <span class="cache-status">
+            Recovered
+          </span>
 
-<div class="cache-file">
+        </a>
 
-<a
-  href="/archive/cache/conversation_fragment_001.html"
->
+      </div>
 
-<strong>
+      <div class="cache-file">
 
-conversation_fragment_001.txt
+        <a href="conversation_fragment_001.html">
 
-</strong>
+          <strong>
+            conversation_fragment_001.txt
+          </strong>
 
-<br>
+          <br>
 
-<span class="cache-status">
+          <span class="cache-status">
+            Recovered
+          </span>
 
-Recovered
+        </a>
 
-</span>
+      </div>
 
-</a>
+      <div class="cache-file corrupted">
 
-</div>
+        <strong>
+          diary_fragment_002.txt
+        </strong>
 
-<div class="cache-file corrupted">
+        <br>
 
-<strong>
+        <span class="cache-status">
+          Corrupted
+        </span>
 
-diary_fragment_002.txt
+      </div>
 
-</strong>
+      <div class="cache-file corrupted">
 
-<br>
+        <strong>
+          unused_titles.log
+        </strong>
 
-<span class="cache-status">
+        <br>
 
-Corrupted
+        <span class="cache-status">
+          Locked
+        </span>
 
-</span>
+      </div>
 
-</div>
+      <br>
 
-<div class="cache-file corrupted">
+      <a href="/archive/">
+        EXIT CACHE
+      </a>
 
-<strong>
+    </section>
 
-unused_titles.log
+  </main>
 
-</strong>
+  <script src="../../assets/js/atmosphere.js?v=2"></script>
 
-<br>
+  <script>
+    const warningScreen =
+      document.getElementById("warningScreen");
 
-<span class="cache-status">
+    const cacheScreen =
+      document.getElementById("cacheScreen");
 
-Locked
+    const continueButton =
+      document.getElementById("continueButton");
 
-</span>
+    continueButton.addEventListener(
+      "click",
+      function () {
+        warningScreen.classList.add(
+          "cache-entering"
+        );
 
-</div>
+        setTimeout(() => {
+          warningScreen.classList.remove(
+            "is-visible"
+          );
 
-<br>
-
-<a href="/archive/">
-
-EXIT CACHE
-
-</a>
-
-</div>
-
-<script src="../../assets/js/atmosphere.js?v=2"></script>
+          cacheScreen.classList.add(
+            "is-visible"
+          );
+        }, 900);
+      }
+    );
+  </script>
 
 </body>
 
