@@ -9,381 +9,271 @@
     content="width=device-width, initial-scale=1.0"
   >
 
-  <title>UNINDEXED CACHE</title>
+  <title>Lost & Found Archive</title>
 
   <link
     rel="stylesheet"
-    href="../../assets/css/style.css"
+    href="../assets/css/style.css"
   >
 
   <style>
     body {
       align-items: flex-start;
-      background: #020202;
     }
 
-    .cache-shell {
+    .archive-container {
       width: min(92vw, 900px);
       margin: 0 auto;
     }
 
-    .cache-screen {
-      display: none;
-    }
-
-    .cache-screen.is-visible {
-      display: block;
-    }
-
-    .warning-panel {
-      min-height: 70vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .warning-title {
-      color: #c94444;
-      text-shadow:
-        0 0 8px rgba(255, 0, 0, 0.3),
-        0 0 18px rgba(255, 0, 0, 0.12);
-    }
-
-    .warning-copy {
-      max-width: 620px;
-      line-height: 1.7;
-      color: #b9a4a4;
-    }
-
-    .warning-actions {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 14px;
-      margin-top: 28px;
+    .archive-list {
+      display: grid;
+      gap: 18px;
       width: 100%;
+      margin-top: 30px;
     }
 
-    .warning-actions button,
-    .warning-actions a {
-      margin-top: 0;
-    }
+    .item {
+      width: 100%;
+      border: 1px solid #333;
+      padding: clamp(18px, 3vw, 24px);
+      background: rgba(255,255,255,.02);
+      text-align: left;
 
-    .cache-warning {
-      color: #a33;
-      text-shadow:
-        0 0 8px rgba(255, 0, 0, 0.25);
-    }
-
-    .cache-file {
-      border: 1px solid rgba(180, 40, 40, 0.35);
-      background: rgba(90, 0, 0, 0.05);
-      padding: 18px;
-      margin: 18px 0;
       transition:
-        background 0.25s ease,
-        border-color 0.25s ease,
-        transform 0.25s ease;
+        border-color .2s ease,
+        background .2s ease,
+        transform .2s ease;
     }
 
-    .cache-file:hover {
-      background: rgba(120, 0, 0, 0.12);
-      border-color: rgba(255, 70, 70, 0.5);
+    .item:hover {
+      border-color: #777;
+      background: rgba(255,255,255,.05);
       transform: translateY(-2px);
     }
 
-    .cache-file a {
+    .item a {
       display: block;
       width: 100%;
-      max-width: none;
-      margin: 0;
-      padding: 0;
-      border: none;
-      background: transparent;
+      color: white;
       text-decoration: none;
-      color: #d7b0b0;
       text-align: left;
     }
 
-    .cache-file a:hover {
-      background: transparent;
-      color: #f0caca;
-      box-shadow: none;
+    .item-number {
+      display: block;
+      margin-bottom: 8px;
+      letter-spacing: 1px;
     }
 
-    .cache-status {
-      color: #8a5555;
-      font-size: 0.9rem;
+    .item-title {
+      display: block;
+      margin-bottom: 8px;
+      font-size: clamp(1.05rem,2.5vw,1.25rem);
     }
 
-    .corrupted {
-      color: #777;
+    .item-status {
+      display: block;
+      color: #aaa;
+      font-size: .95rem;
     }
 
-    .glitch {
-      animation: subtle-glitch 9s infinite;
+    .missing {
+      color: #555;
+      border-color: #222;
     }
 
-    .cache-entering {
-      animation:
-        cache-entry-flicker 0.9s steps(2, end)
-        forwards;
+    .missing .item-status {
+      color: #555;
     }
 
-    @keyframes subtle-glitch {
-      0%,
-      96%,
-      100% {
-        transform: none;
-        opacity: 1;
-      }
-
-      97% {
-        transform: translateX(1px);
-        opacity: 0.85;
-      }
-
-      98% {
-        transform: translateX(-1px);
-      }
-
-      99% {
-        transform: none;
-        opacity: 1;
-      }
+    .redacted-file {
+      border-color: #5b1f1f;
+      background: rgba(100,0,0,.08);
     }
 
-    @keyframes cache-entry-flicker {
-      0% {
-        opacity: 1;
-        filter: brightness(1);
+    .redacted-file:hover {
+      border-color: #a33;
+      background: rgba(130,0,0,.14);
+    }
+
+    .redacted-file .item-number,
+    .redacted-file .item-title {
+      color: #d7b0b0;
+    }
+
+    .redacted-file .item-status {
+      color: #9c5c5c;
+    }
+
+    .return-link {
+      margin-top: 30px;
+    }
+
+    @media (min-width:700px) {
+
+      .archive-list {
+        grid-template-columns:
+          repeat(2,minmax(0,1fr));
       }
 
-      20% {
-        opacity: 0.15;
-        filter: brightness(2.8);
-        transform: translateX(-3px);
+      .item:first-child {
+        grid-column:1 / -1;
       }
 
-      40% {
-        opacity: 1;
-        filter: brightness(0.65);
-        transform: translateX(2px);
-      }
-
-      60% {
-        opacity: 0.25;
-        filter: brightness(2.2);
-      }
-
-      80% {
-        opacity: 1;
-        filter: brightness(1.1);
-        transform: translateX(-1px);
-      }
-
-      100% {
-        opacity: 0;
-        filter: brightness(3);
-        transform: translateX(0);
-      }
     }
   </style>
+
 </head>
 
 <body>
 
-  <main class="cache-shell">
+  <main class="archive-container">
 
-    <section
-      id="warningScreen"
-      class="container warning-panel cache-screen is-visible"
-    >
+    <div class="container">
 
-      <h1 class="warning-title">
-        ACCESS WARNING
-      </h1>
+      <h1>LOST & FOUND</h1>
+
+      <p>Recovered Items</p>
 
       <hr>
 
-      <p class="warning-copy">
-        This area is not part of the public archive.
-      </p>
+      <div class="archive-list">
 
-      <p class="warning-copy">
-        Recovered files may be incomplete, corrupted,
-        improperly cataloged, or actively unstable.
-      </p>
+        <div class="item">
 
-      <p class="warning-copy">
-        Continued access may expose unindexed material.
-      </p>
+          <a href="/archive/001/">
 
-      <div class="warning-actions">
+            <strong class="item-number">
+              ITEM #001
+            </strong>
 
-        <button
-          id="continueButton"
-          type="button"
+            <span class="item-title">
+              Gutterlight Cinema
+            </span>
+
+            <span
+              id="item001Status"
+              class="item-status"
+            >
+              Status: Awaiting Recovery
+            </span>
+
+          </a>
+
+        </div>
+
+        <div class="item missing">
+
+          <strong class="item-number">
+            ITEM #002
+          </strong>
+
+          <span class="item-title">
+            Missing
+          </span>
+
+          <span class="item-status">
+            Status: Unrecovered
+          </span>
+
+        </div>
+
+        <div class="item missing">
+
+          <strong class="item-number">
+            ITEM #003
+          </strong>
+
+          <span class="item-title">
+            Missing
+          </span>
+
+          <span class="item-status">
+            Status: Unrecovered
+          </span>
+
+        </div>
+
+        <div
+          id="redactedFile"
+          class="item redacted-file"
+          hidden
         >
-          Continue
-        </button>
 
-        <a href="/archive/">
-          Exit
-        </a>
+          <a href="/archive/cache/">
 
-      </div>
+            <strong class="item-number">
+              FILE // ███████
+            </strong>
 
-    </section>
+            <span class="item-title">
+              UNINDEXED CACHE
+            </span>
 
-    <section
-      id="cacheScreen"
-      class="container cache-screen glitch"
-    >
+            <span class="item-status">
+              Status: Newly Indexed
+            </span>
 
-      <h1 class="cache-warning">
-        UNINDEXED CACHE
-      </h1>
+          </a>
 
-      <hr>
-
-      <p>
-        WARNING:
-      </p>
-
-      <p>
-        Recovered files below are not part of the public archive.
-      </p>
-
-      <p>
-        Some files may be incomplete,
-        corrupted, or improperly cataloged.
-      </p>
-
-      <br>
-
-      <p>
-        Files Indexed:
-        2
-
-        <br>
-
-        Files Corrupted:
-        17
-
-        <br>
-
-        Files Missing:
-        84
-      </p>
-
-      <hr>
-
-      <div class="cache-file">
-
-        <a href="#">
-
-          <strong>
-            concept_art_001.png
-          </strong>
-
-          <br>
-
-          <span class="cache-status">
-            Recovered
-          </span>
-
-        </a>
+        </div>
 
       </div>
 
-      <div class="cache-file">
-
-        <a href="conversation_fragment_001.html">
-
-          <strong>
-            conversation_fragment_001.txt
-          </strong>
-
-          <br>
-
-          <span class="cache-status">
-            Recovered
-          </span>
-
-        </a>
-
-      </div>
-
-      <div class="cache-file corrupted">
-
-        <strong>
-          diary_fragment_002.txt
-        </strong>
-
-        <br>
-
-        <span class="cache-status">
-          Corrupted
-        </span>
-
-      </div>
-
-      <div class="cache-file corrupted">
-
-        <strong>
-          unused_titles.log
-        </strong>
-
-        <br>
-
-        <span class="cache-status">
-          Locked
-        </span>
-
-      </div>
-
-      <br>
-
-      <a href="/archive/">
-        EXIT CACHE
+      <a
+        class="return-link"
+        href="/"
+      >
+        Return to Entrance
       </a>
 
-    </section>
+    </div>
 
   </main>
 
-  <script src="../../assets/js/atmosphere.js?v=2"></script>
+  <script src="../assets/js/atmosphere.js?v=2"></script>
 
   <script>
-    const warningScreen =
-      document.getElementById("warningScreen");
 
-    const cacheScreen =
-      document.getElementById("cacheScreen");
+    const item001Status =
+      document.getElementById(
+        "item001Status"
+      );
 
-    const continueButton =
-      document.getElementById("continueButton");
+    const redactedFile =
+      document.getElementById(
+        "redactedFile"
+      );
 
-    continueButton.addEventListener(
-      "click",
-      function () {
-        warningScreen.classList.add(
-          "cache-entering"
-        );
+    const itemRecovered =
+      localStorage.getItem(
+        "item001Recovered"
+      );
 
-        setTimeout(() => {
-          warningScreen.classList.remove(
-            "is-visible"
-          );
+    const redactedUnlocked =
+      localStorage.getItem(
+        "redacted001Unlocked"
+      );
 
-          cacheScreen.classList.add(
-            "is-visible"
-          );
-        }, 900);
-      }
-    );
+    if (
+      itemRecovered === "true"
+    ) {
+
+      item001Status.textContent =
+        "Status: Recovered";
+
+    }
+
+    if (
+      redactedUnlocked === "true"
+    ) {
+
+      redactedFile.hidden =
+        false;
+
+    }
+
   </script>
 
 </body>
