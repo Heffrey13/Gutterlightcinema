@@ -9,7 +9,7 @@
     content="width=device-width, initial-scale=1.0"
   >
 
-  <title>Recovered File #001</title>
+  <title>Recovered Item #001</title>
 
   <link
     rel="stylesheet"
@@ -159,8 +159,32 @@
       margin-top: 30px;
     }
 
-    .archive-actions a {
+    .archive-actions a,
+    .archive-actions button {
       margin-top: 0;
+    }
+
+    .return-panel {
+      display: none;
+      margin-top: 30px;
+    }
+
+    .return-panel.is-visible {
+      display: block;
+    }
+
+    #returnError {
+      min-height: 1.5em;
+      margin-top: 18px;
+      color: #999;
+    }
+
+    .typing-line {
+      min-height: 1.5em;
+    }
+
+    .hidden {
+      display: none;
     }
 
     @media (min-width: 700px) {
@@ -192,18 +216,18 @@
 
       <header class="archive-header">
 
-        <h1>FILE #001</h1>
+        <h1 id="pageHeading">RECOVERY COMPLETE</h1>
 
-        <p>
-          <strong>Recovered Artifact Record</strong>
+        <p id="pageSubheading">
+          <strong>Artifact successfully recovered.</strong>
         </p>
 
         <hr>
 
         <h2>Gutterlight Cinema</h2>
 
-        <p>
-          Archive file available for review.
+        <p id="pageDescription">
+          Welcome to Archive 001.
         </p>
 
       </header>
@@ -221,23 +245,33 @@
         </div>
 
         <div class="meta-card">
-          <span class="meta-label">File Status</span>
-          <span class="meta-value">Recovered</span>
+          <span class="meta-label" id="statusLabel">
+            Recovery Status
+          </span>
+
+          <span class="meta-value" id="statusValue">
+            97.2%
+          </span>
         </div>
 
       </section>
 
-      <section class="artifact-record">
+      <!-- Appears only after the artifact has been returned -->
+
+      <section
+        id="artifactRecord"
+        class="artifact-record hidden"
+      >
 
         <div class="artifact-image-frame">
 
-          <!--
-            Later, replace this placeholder with:
+          <!-- Replace this placeholder later with:
 
-            <img
-              src="../../assets/images/archive-001-ticket.jpg"
-              alt="Recovered Gutterlight Cinema admission ticket"
-            >
+          <img
+            src="../../assets/images/archive-001-ticket.jpg"
+            alt="Recovered Gutterlight Cinema admission ticket"
+          >
+
           -->
 
           Artifact image pending catalog upload
@@ -261,12 +295,6 @@
             personal reminder, though its later use as a valid recovery
             phrase suggests the ticket may have functioned as more than
             ordinary proof of admission.
-          </p>
-
-          <p>
-            The artifact appears to have survived prolonged storage under
-            poor conditions. Surface wear, creasing, discoloration, and
-            edge damage are consistent with repeated handling.
           </p>
 
           <ul class="record-list">
@@ -356,7 +384,68 @@
 
       </section>
 
-      <nav class="archive-actions">
+      <!-- Shown only before the item is returned -->
+
+      <nav
+        id="preReturnActions"
+        class="archive-actions"
+      >
+
+        <button
+          id="returnButton"
+          type="button"
+        >
+          Return Item to Lost &amp; Found
+        </button>
+
+        <a href="/">
+          Return to Entrance
+        </a>
+
+      </nav>
+
+      <section
+        id="returnPanel"
+        class="return-panel"
+      >
+
+        <hr>
+
+        <h2>ITEM IDENTIFICATION REQUIRED</h2>
+
+        <p>
+          Please identify the recovered artifact.
+        </p>
+
+        <form id="returnForm">
+
+          <input
+            id="itemInput"
+            name="item"
+            type="text"
+            placeholder="Item..."
+            autocomplete="off"
+            enterkeyhint="go"
+          >
+
+          <br><br>
+
+          <button type="submit">
+            Return Item
+          </button>
+
+        </form>
+
+        <p id="returnError"></p>
+
+      </section>
+
+      <!-- Shown only after the item is returned -->
+
+      <nav
+        id="postReturnActions"
+        class="archive-actions hidden"
+      >
 
         <a href="/archive/">
           Return to Archive
@@ -373,6 +462,271 @@
   </main>
 
   <script src="../../assets/js/atmosphere.js?v=2"></script>
+
+  <script>
+    const itemAlreadyReturned =
+      localStorage.getItem("item001Recovered") === "true";
+
+    const pageHeading =
+      document.getElementById("pageHeading");
+
+    const pageSubheading =
+      document.getElementById("pageSubheading");
+
+    const pageDescription =
+      document.getElementById("pageDescription");
+
+    const statusLabel =
+      document.getElementById("statusLabel");
+
+    const statusValue =
+      document.getElementById("statusValue");
+
+    const artifactRecord =
+      document.getElementById("artifactRecord");
+
+    const preReturnActions =
+      document.getElementById("preReturnActions");
+
+    const postReturnActions =
+      document.getElementById("postReturnActions");
+
+    const returnButton =
+      document.getElementById("returnButton");
+
+    const returnPanel =
+      document.getElementById("returnPanel");
+
+    const returnForm =
+      document.getElementById("returnForm");
+
+    const itemInput =
+      document.getElementById("itemInput");
+
+    const returnError =
+      document.getElementById("returnError");
+
+    const acceptedItems = [
+      "ticket",
+      "movie ticket"
+    ];
+
+    function showReturnedState() {
+      pageHeading.textContent =
+        "FILE #001";
+
+      pageSubheading.innerHTML =
+        "<strong>Recovered Artifact Record</strong>";
+
+      pageDescription.textContent =
+        "Archive file available for review.";
+
+      statusLabel.textContent =
+        "File Status";
+
+      statusValue.textContent =
+        "Recovered";
+
+      artifactRecord.classList.remove("hidden");
+
+      preReturnActions.classList.add("hidden");
+      returnPanel.classList.remove("is-visible");
+      postReturnActions.classList.remove("hidden");
+    }
+
+    if (itemAlreadyReturned) {
+      showReturnedState();
+    }
+
+    returnButton.addEventListener(
+      "click",
+      function () {
+        returnPanel.classList.add("is-visible");
+        returnButton.style.display = "none";
+
+        setTimeout(() => {
+          itemInput.focus();
+        }, 100);
+      }
+    );
+
+    returnForm.addEventListener(
+      "submit",
+      function (event) {
+        event.preventDefault();
+
+        const value = itemInput.value
+          .trim()
+          .toLowerCase()
+          .replace(/\s+/g, " ");
+
+        if (!acceptedItems.includes(value)) {
+          returnError.textContent =
+            "Catalog match failed.";
+
+          itemInput.select();
+          return;
+        }
+
+        localStorage.setItem(
+          "item001Recovered",
+          "true"
+        );
+
+        localStorage.setItem(
+          "redacted001Unlocked",
+          "true"
+        );
+
+        runReturnSequence();
+      }
+    );
+
+    function typeText(
+      element,
+      text,
+      speed = 36
+    ) {
+      return new Promise((resolve) => {
+        let index = 0;
+
+        element.textContent = "";
+
+        const timer = setInterval(() => {
+          element.textContent += text[index];
+          index += 1;
+
+          if (index >= text.length) {
+            clearInterval(timer);
+            resolve();
+          }
+        }, speed);
+      });
+    }
+
+    function wait(milliseconds) {
+      return new Promise((resolve) => {
+        setTimeout(resolve, milliseconds);
+      });
+    }
+
+    async function runReturnSequence() {
+      document.body.innerHTML = `
+        <div
+          class="container recovery-terminal"
+          id="terminal"
+        >
+          <h1
+            id="returnHeading"
+            class="typing-line"
+          ></h1>
+
+          <p
+            id="catalogLine"
+            class="typing-line"
+          ></p>
+
+          <br>
+
+          <p
+            id="resealLine"
+            class="typing-line"
+          ></p>
+
+          <p
+            id="storageLine"
+            class="typing-line"
+          ></p>
+
+          <p
+            id="updateLine"
+            class="typing-line"
+          ></p>
+
+          <br>
+
+          <p
+            id="residualLine"
+            class="typing-line"
+          ></p>
+        </div>
+      `;
+
+      const returnHeading =
+        document.getElementById("returnHeading");
+
+      const catalogLine =
+        document.getElementById("catalogLine");
+
+      const resealLine =
+        document.getElementById("resealLine");
+
+      const storageLine =
+        document.getElementById("storageLine");
+
+      const updateLine =
+        document.getElementById("updateLine");
+
+      const residualLine =
+        document.getElementById("residualLine");
+
+      await typeText(
+        returnHeading,
+        "RETURNING ARTIFACT...",
+        42
+      );
+
+      await wait(250);
+
+      await typeText(
+        catalogLine,
+        "CATALOG MATCH FOUND",
+        34
+      );
+
+      await wait(450);
+
+      await typeText(
+        resealLine,
+        "Resealing recovered media...",
+        34
+      );
+
+      await wait(250);
+
+      await typeText(
+        storageLine,
+        "Returning artifact to storage...",
+        34
+      );
+
+      await wait(250);
+
+      await typeText(
+        updateLine,
+        "Updating archive index...",
+        34
+      );
+
+      await wait(700);
+
+      await typeText(
+        residualLine,
+        "RESIDUAL DATA DETECTED",
+        50
+      );
+
+      await wait(750);
+
+      document
+        .getElementById("terminal")
+        .classList.add("screen-flicker");
+
+      await wait(950);
+
+      window.location.href = "/archive/";
+    }
+  </script>
 
 </body>
 
