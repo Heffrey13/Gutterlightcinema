@@ -26,6 +26,25 @@ document.addEventListener(
       );
 
     /*
+      VISIT MEMORY
+    */
+
+    const previousVisits =
+      Number(
+        localStorage.getItem(
+          "cacheVisitCount"
+        ) || 0
+      );
+
+    const currentVisit =
+      previousVisits + 1;
+
+    localStorage.setItem(
+      "cacheVisitCount",
+      String(currentVisit)
+    );
+
+    /*
       DIGITAL OVERLAYS
     */
 
@@ -68,6 +87,17 @@ document.addEventListener(
       );
     }
 
+    function chooseRandom(
+      items
+    ) {
+      return items[
+        Math.floor(
+          Math.random() *
+          items.length
+        )
+      ];
+    }
+
     function scheduleRandom(
       callback,
       minimumDelay,
@@ -81,6 +111,7 @@ document.addEventListener(
 
       setTimeout(
         function () {
+
           callback();
 
           scheduleRandom(
@@ -88,6 +119,7 @@ document.addEventListener(
             minimumDelay,
             maximumDelay
           );
+
         },
         delay
       );
@@ -103,7 +135,8 @@ document.addEventListener(
       const characters =
         "█▓▒░#@%&?/";
 
-      const validIndexes = [];
+      const validIndexes =
+        [];
 
       for (
         let index = 0;
@@ -126,20 +159,14 @@ document.addEventListener(
       }
 
       const targetIndex =
-        validIndexes[
-          Math.floor(
-            Math.random() *
-            validIndexes.length
-          )
-        ];
+        chooseRandom(
+          validIndexes
+        );
 
       const replacement =
-        characters[
-          Math.floor(
-            Math.random() *
-            characters.length
-          )
-        ];
+        chooseRandom(
+          characters.split("")
+        );
 
       return (
         text.slice(
@@ -156,52 +183,182 @@ document.addEventListener(
     }
 
     /*
-      SYSTEM MESSAGES
+      VISIT-AWARE MESSAGE POOLS
     */
 
-    const messages = [
-      "USER NOT RECOGNIZED",
+    const commonMessages = [
       "INDEX PARTIAL",
       "RESIDUAL DATA DETECTED",
-      "UNKNOWN USER",
       "ARCHIVE MISMATCH",
-      "UNAUTHORIZED INDEX",
-      "THIS FILE SHOULD NOT EXIST",
       "SESSION TRACE INCOMPLETE"
     ];
 
+    const returningMessages = [
+      "USER NOT RECOGNIZED",
+      "UNKNOWN USER",
+      "UNAUTHORIZED INDEX",
+      "CACHE ACCESS REPEATED"
+    ];
+
+    const familiarMessages = [
+      "YOU RETURNED",
+      "SESSION PATTERN DETECTED",
+      "PREVIOUS ACCESS CONFIRMED",
+      "ARCHIVE REMEMBERS"
+    ];
+
+    const deepMessages = [
+      "CONNECTED USERS: 2",
+      "SESSION OBSERVED",
+      "ARCHITECT PROCESS ACTIVE",
+      "THIS FILE SHOULD NOT EXIST"
+    ];
+
+    function getMessagePool() {
+
+      let pool =
+        [...commonMessages];
+
+      if (
+        currentVisit >= 2
+      ) {
+        pool = pool.concat(
+          returningMessages
+        );
+      }
+
+      if (
+        currentVisit >= 4
+      ) {
+        pool = pool.concat(
+          familiarMessages
+        );
+      }
+
+      if (
+        currentVisit >= 7
+      ) {
+        pool = pool.concat(
+          deepMessages
+        );
+      }
+
+      return pool;
+    }
+
     function showSystemMessage() {
+
       if (!systemMessage) {
         return;
       }
 
+      const message =
+        chooseRandom(
+          getMessagePool()
+        );
+
       systemMessage.textContent =
-        messages[
-          Math.floor(
-            Math.random() *
-            messages.length
-          )
-        ];
+        message;
 
       systemMessage.style.opacity =
         "0.82";
 
       setTimeout(
         function () {
+
           systemMessage.style.opacity =
             "0";
+
         },
         randomBetween(
-          700,
-          1450
+          850,
+          1600
         )
       );
     }
 
+    /*
+      FIRST-VISIT-SPECIFIC EVENT
+    */
+
+    if (
+      currentVisit === 1
+    ) {
+
+      setTimeout(
+        function () {
+
+          if (!systemMessage) {
+            return;
+          }
+
+          systemMessage.textContent =
+            "UNAUTHORIZED INDEX";
+
+          systemMessage.style.opacity =
+            "0.75";
+
+          setTimeout(
+            function () {
+
+              systemMessage.style.opacity =
+                "0";
+
+            },
+            1100
+          );
+
+        },
+        18000
+      );
+
+    }
+
+    /*
+      RETURNING-VISITOR EVENT
+    */
+
+    if (
+      currentVisit >= 3
+    ) {
+
+      setTimeout(
+        function () {
+
+          if (!systemMessage) {
+            return;
+          }
+
+          systemMessage.textContent =
+            "YOU RETURNED";
+
+          systemMessage.style.opacity =
+            "0.88";
+
+          setTimeout(
+            function () {
+
+              systemMessage.style.opacity =
+                "0";
+
+            },
+            1500
+          );
+
+        },
+        9000
+      );
+
+    }
+
+    /*
+      COMMON SYSTEM MESSAGES
+    */
+
     scheduleRandom(
       showSystemMessage,
-      18000,
-      42000
+      30000,
+      90000
     );
 
     /*
@@ -209,6 +366,7 @@ document.addEventListener(
     */
 
     function glitchFilename() {
+
       if (
         filenames.length === 0
       ) {
@@ -216,12 +374,11 @@ document.addEventListener(
       }
 
       const filename =
-        filenames[
-          Math.floor(
-            Math.random() *
-            filenames.length
+        chooseRandom(
+          Array.from(
+            filenames
           )
-        ];
+        );
 
       const originalText =
         filename.textContent;
@@ -236,11 +393,13 @@ document.addEventListener(
 
       setTimeout(
         function () {
+
           filename.textContent =
             originalText;
 
           filename.style.textShadow =
             "";
+
         },
         randomBetween(
           180,
@@ -251,8 +410,8 @@ document.addEventListener(
 
     scheduleRandom(
       glitchFilename,
-      14000,
-      36000
+      15000,
+      45000
     );
 
     /*
@@ -260,6 +419,7 @@ document.addEventListener(
     */
 
     function flickerMissingCount() {
+
       if (!missingValue) {
         return;
       }
@@ -272,28 +432,26 @@ document.addEventListener(
         "85",
         "██",
         "?",
-        "0",
-        "84"
+        "0"
       ];
 
       missingValue.textContent =
-        temporaryValues[
-          Math.floor(
-            Math.random() *
-            temporaryValues.length
-          )
-        ];
+        chooseRandom(
+          temporaryValues
+        );
 
       missingValue.style.color =
         "#d35f6a";
 
       setTimeout(
         function () {
+
           missingValue.textContent =
             original;
 
           missingValue.style.color =
             "";
+
         },
         randomBetween(
           250,
@@ -303,6 +461,7 @@ document.addEventListener(
     }
 
     function flickerIndexedCount() {
+
       if (!indexedValue) {
         return;
       }
@@ -314,22 +473,20 @@ document.addEventListener(
         "3",
         "21",
         "1",
-        "█",
-        "2"
+        "█"
       ];
 
       indexedValue.textContent =
-        temporaryValues[
-          Math.floor(
-            Math.random() *
-            temporaryValues.length
-          )
-        ];
+        chooseRandom(
+          temporaryValues
+        );
 
       setTimeout(
         function () {
+
           indexedValue.textContent =
             original;
+
         },
         randomBetween(
           220,
@@ -340,14 +497,14 @@ document.addEventListener(
 
     scheduleRandom(
       flickerMissingCount,
-      22000,
-      52000
+      45000,
+      120000
     );
 
     scheduleRandom(
       flickerIndexedCount,
-      30000,
-      65000
+      60000,
+      150000
     );
 
     /*
@@ -355,6 +512,7 @@ document.addEventListener(
     */
 
     function pageJolt() {
+
       body.style.transform =
         "translate(" +
         randomBetween(
@@ -373,11 +531,13 @@ document.addEventListener(
 
       setTimeout(
         function () {
+
           body.style.transform =
             "";
 
           body.style.filter =
             "";
+
         },
         randomBetween(
           70,
@@ -388,8 +548,8 @@ document.addEventListener(
 
     scheduleRandom(
       pageJolt,
-      20000,
-      48000
+      30000,
+      90000
     );
 
     /*
@@ -397,13 +557,16 @@ document.addEventListener(
     */
 
     function noiseFlash() {
+
       noise.style.opacity =
         "0.32";
 
       setTimeout(
         function () {
+
           noise.style.opacity =
             "0.12";
+
         },
         randomBetween(
           60,
@@ -414,9 +577,130 @@ document.addEventListener(
 
     scheduleRandom(
       noiseFlash,
-      32000,
-      72000
+      90000,
+      240000
     );
+
+    /*
+      CURSOR INSTABILITY
+      DESKTOP / MOUSE ONLY
+    */
+
+    if (
+      window.matchMedia(
+        "(pointer: fine)"
+      ).matches
+    ) {
+
+      let lastMouseMove =
+        Date.now();
+
+      document.addEventListener(
+        "mousemove",
+        function () {
+
+          lastMouseMove =
+            Date.now();
+
+        }
+      );
+
+      /*
+        Brief cursor change
+      */
+
+      scheduleRandom(
+        function () {
+
+          body.style.cursor =
+            "crosshair";
+
+          setTimeout(
+            function () {
+
+              body.style.cursor =
+                "";
+
+            },
+            140
+          );
+
+        },
+        90000,
+        240000
+      );
+
+      /*
+        Brief cursor disappearance
+      */
+
+      scheduleRandom(
+        function () {
+
+          body.style.cursor =
+            "none";
+
+          setTimeout(
+            function () {
+
+              body.style.cursor =
+                "";
+
+            },
+            100
+          );
+
+        },
+        150000,
+        360000
+      );
+
+      /*
+        Slight idle drag
+      */
+
+      scheduleRandom(
+        function () {
+
+          const idleTime =
+            Date.now() -
+            lastMouseMove;
+
+          if (
+            idleTime < 3500
+          ) {
+            return;
+          }
+
+          body.style.transform =
+            "translate(" +
+            randomBetween(
+              -2,
+              2
+            ).toFixed(2) +
+            "px, " +
+            randomBetween(
+              -2,
+              2
+            ).toFixed(2) +
+            "px)";
+
+          setTimeout(
+            function () {
+
+              body.style.transform =
+                "";
+
+            },
+            240
+          );
+
+        },
+        60000,
+        180000
+      );
+
+    }
 
   }
 );
